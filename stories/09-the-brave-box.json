@@ -1,0 +1,35 @@
+{
+  "id": "the-brave-box",
+  "order": 9,
+  "cover": "box",
+  "theme": {
+    "en": "Feelings, and noticing your own courage",
+    "ar": "المشاعر، واكتشاف شجاعتك"
+  },
+  "en": {
+    "title": "The Brave Box",
+    "pages": [
+      "Maya had a small box with a lid that clicked. Her mother gave it to her on the first day in the new place. 'This is a brave box,' she said. 'Every time you do something brave, put a pebble inside.'",
+      "'But I'm not brave,' said Maya. 'I was scared all the way here.' Her mother smiled. 'Being scared and doing it anyway,' she said, 'is exactly what brave is.'",
+      "On Monday, Maya said hello to the shopkeeper in the new language. Click. One pebble. On Tuesday, she tried a new food that was green and strange. It was nice. Click. Two pebbles.",
+      "On Wednesday, Maya felt very sad, and she cried, and she told her mother why. 'Does that count?' she asked. 'That counts twice,' said her mother. 'Telling someone how you feel is one of the bravest things there is.' Click, click.",
+      "On Thursday, she went to the park and asked a girl if she could play. Click. On Friday, she helped a smaller boy find his lost shoe. Click. On Saturday, she slept the whole night without waking up. Click.",
+      "Soon the box was so full of pebbles that it rattled when Maya shook it. It was heavy, too. Heavy with brave.",
+      "That night, Maya put the box beside her pillow. 'You were right,' she told her mother. 'I am brave. I just didn't know it yet.' Goodnight, Maya. You are braver than you know."
+    ],
+    "grownUp": "Make a brave box together. Any box will do, with pebbles, buttons or seeds."
+  },
+  "ar": {
+    "title": "صندوق الشجاعة",
+    "pages": [
+      "كان عند مايا صندوق صغير، غطاؤه يصدر «تك» حين يُغلق. أعطتها إياه أمّها في أول يوم في المكان الجديد. قالت: «هذا صندوق الشجاعة. كلما فعلتِ شيئًا شجاعًا، ضعي فيه حصاة».",
+      "قالت مايا: «لكنني لست شجاعة. كنت خائفة طوال الطريق إلى هنا». ابتسمت أمّها وقالت: «أن تكوني خائفة وتفعلي الشيء رغم ذلك، هذه هي الشجاعة تمامًا».",
+      "يوم الاثنين، قالت مايا «مرحبًا» لصاحب الدكّان باللغة الجديدة. تك. حصاة واحدة. ويوم الثلاثاء، جرّبت طعامًا جديدًا، أخضر وغريبًا. كان لذيذًا. تك. حصاتان.",
+      "ويوم الأربعاء، شعرت مايا بحزن شديد، فبكت، وأخبرت أمّها لماذا. سألت: «هل هذا يُحسب؟» قالت أمّها: «هذا يُحسب مرتين. أن تخبري أحدًا بما تشعرين به هو من أشجع الأشياء على الإطلاق». تك، تك.",
+      "ويوم الخميس، ذهبت إلى الحديقة وسألت بنتًا إن كانت تستطيع أن تلعب معها. تك. ويوم الجمعة، ساعدت ولدًا أصغر منها ليجد حذاءه الضائع. تك. ويوم السبت، نامت الليل كله دون أن تستيقظ. تك.",
+      "وسرعان ما امتلأ الصندوق بالحصى حتى صار يخشخش حين تهزّه مايا. وصار ثقيلًا أيضًا. ثقيلًا بالشجاعة.",
+      "في تلك الليلة، وضعت مايا الصندوق بجانب وسادتها. وقالت لأمّها: «كنتِ على حق. أنا شجاعة. لكنني لم أكن أعرف ذلك بعد». ليلة سعيدة يا مايا. أنتِ أشجع مما تظنّين."
+    ],
+    "grownUp": "اصنعوا صندوق شجاعة معًا. أي صندوق يفي بالغرض، مع حصى أو أزرار أو بذور."
+  }
+}

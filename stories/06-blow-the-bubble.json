@@ -1,0 +1,35 @@
+{
+  "id": "blow-the-bubble",
+  "order": 6,
+  "cover": "bubble",
+  "theme": {
+    "en": "Calming a racing heart",
+    "ar": "تهدئة القلب حين يدقّ بسرعة"
+  },
+  "en": {
+    "title": "Blow the Bubble",
+    "pages": [
+      "Yusuf was nearly asleep when the thunder came. BOOM. It rolled across the sky and rattled the window. Yusuf's heart began to drum, fast fast fast, as if it wanted to run away without him.",
+      "His big sister Hana was there in a moment. 'I'm here,' she said. 'Your heart is just doing its job. It's trying to keep you safe. Let's help it slow down.'",
+      "'Put your hand on your tummy,' said Hana. 'Now breathe in through your nose, slowly, as if you're smelling a flower. One, two, three, four.' Yusuf breathed in. His tummy rose under his hand.",
+      "'Now breathe out through your mouth, slowly, slowly, as if you're blowing the biggest bubble in the world. Don't let it pop!' Yusuf blew out, long and gentle. Let's do it together. Smell the flower... and blow the bubble.",
+      "They did it again. Smell the flower... blow the bubble. And again. Yusuf's heart stopped drumming and started walking instead. Slow steps. Slower.",
+      "'Now tell me three things you can see,' said Hana. 'The lamp,' said Yusuf. 'Your face. My blanket with the stars on it.' 'And one thing you can hear?' Yusuf listened. The thunder was far away now, grumbling to itself. 'The rain,' he said.",
+      "The rain went on softly, tapping the window like small fingers. Yusuf smelled the flower one more time, and blew the biggest, gentlest bubble of all, and floated off to sleep inside it. Goodnight, Yusuf."
+    ],
+    "grownUp": "Practise it together, even on calm nights: smell the flower, blow the bubble. It works best when it feels familiar."
+  },
+  "ar": {
+    "title": "انفخ الفقاعة",
+    "pages": [
+      "كان يوسف على وشك أن ينام حين جاء الرعد. بُووم! تدحرج في السماء وهزّ النافذة. وبدأ قلب يوسف يدقّ مثل الطبل، بسرعة، بسرعة، بسرعة، كأنه يريد أن يهرب من دونه.",
+      "وفي لحظة، كانت أخته الكبيرة هناء بجانبه. قالت: «أنا هنا. قلبك يقوم بعمله فقط. إنه يحاول أن يحميك. تعالَ نساعده على أن يهدأ».",
+      "قالت هناء: «ضع يدك على بطنك. والآن خذ نفسًا من أنفك، ببطء، كأنك تشمّ وردة. واحد، اثنان، ثلاثة، أربعة». أخذ يوسف نفسًا. وارتفع بطنه تحت يده.",
+      "«والآن أخرج النفس من فمك، ببطء، ببطء، كأنك تنفخ أكبر فقاعة في العالم. لا تدعها تنفجر!» نفخ يوسف طويلًا وبلطف. هيا نفعلها معًا: شمّ الوردة... وانفخ الفقاعة.",
+      "فعلاها مرة أخرى. شمّ الوردة... انفخ الفقاعة. ومرة أخرى. توقّف قلب يوسف عن الدقّ مثل الطبل، وبدأ يمشي بدلًا من أن يركض. خطوات بطيئة. وأبطأ.",
+      "قالت هناء: «والآن قل لي ثلاثة أشياء تراها». قال يوسف: «المصباح. ووجهك. وبطانيتي التي عليها نجوم». «وشيئًا واحدًا تسمعه؟» أصغى يوسف. كان الرعد بعيدًا الآن، يتذمّر وحده. قال: «المطر».",
+      "استمرّ المطر بهدوء، ينقر على النافذة مثل أصابع صغيرة. شمّ يوسف الوردة مرة أخيرة، ونفخ أكبر فقاعة وألطفها على الإطلاق، وطار إلى النوم بداخلها. ليلة سعيدة يا يوسف."
+    ],
+    "grownUp": "تدرّبوا عليها معًا، حتى في الليالي الهادئة: شمّ الوردة، انفخ الفقاعة. تنجح أكثر حين تصبح مألوفة."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "the-moon-came-too",
+  "order": 1,
+  "cover": "moon",
+  "theme": {
+    "en": "Missing people who are far away",
+    "ar": "الاشتياق إلى من هم بعيدون"
+  },
+  "en": {
+    "title": "The Moon Came Too",
+    "pages": [
+      "On the night they left, Mira looked up at the moon. It was round and bright over the roof of her old home, over the lemon tree, over Grandpa's window. 'Goodbye, moon,' she whispered. She was sure it would stay behind.",
+      "In the new place, everything was different. The streets had different sounds. The bread had a different smell. Even the dark was a different kind of dark. For three nights, Mira did not look at the sky. She did not want to see a sky that wasn't hers.",
+      "On the fourth night, Mama said, 'Come to the window. I want to show you someone.' Mira pressed her nose to the cold glass. And there, round and bright over the new roofs, was the moon.",
+      "'Is it the same moon?' Mira asked. 'The very same,' said Mama. 'It followed us all the way here. And tonight it is shining on Grandpa's window too.'",
+      "Mira thought about that. Grandpa, far away, looking up. The moon, looking down at both of them. It was like a lamp they were sharing.",
+      "So Mira gave the moon a message. 'Tell Grandpa I learned a new word today. Tell him I miss him. Tell him I'm all right.' The moon didn't say anything. But it seemed to shine a little brighter, the way it does when it's listening.",
+      "Now, every night, Mira says goodnight to the moon. One moon, over the old home and the new home, over everyone she loves. Goodnight, moon. Goodnight, Grandpa. Goodnight, Mira."
+    ],
+    "grownUp": "Ask: who would you like the moon to say goodnight to tonight?"
+  },
+  "ar": {
+    "title": "القمر جاء معنا",
+    "pages": [
+      "في الليلة التي رحلوا فيها، نظرت ميرا إلى القمر. كان مستديرًا ومضيئًا فوق سطح بيتها القديم، فوق شجرة الليمون، فوق نافذة جدّها. همست: «وداعًا يا قمر». كانت متأكدة أنه سيبقى هناك.",
+      "في المكان الجديد، كان كل شيء مختلفًا. للشوارع أصوات مختلفة. وللخبز رائحة مختلفة. حتى الظلام كان نوعًا آخر من الظلام. ولثلاث ليالٍ، لم تنظر ميرا إلى السماء. لم تُرد أن ترى سماءً ليست سماءها.",
+      "في الليلة الرابعة، قالت ماما: «تعالي إلى النافذة. أريد أن أُريكِ أحدًا». ألصقت ميرا أنفها بالزجاج البارد. وهناك، مستديرًا ومضيئًا فوق الأسطح الجديدة، كان القمر.",
+      "سألت ميرا: «هل هو القمر نفسه؟» قالت ماما: «نعم، هو نفسه تمامًا. لقد تبعنا طوال الطريق إلى هنا. والليلة يضيء على نافذة جدّك أيضًا».",
+      "فكّرت ميرا في ذلك. جدّها، بعيدًا، ينظر إلى الأعلى. والقمر ينظر إلى الأسفل إليهما معًا. كأنه مصباح يتشاركانه.",
+      "فأعطت ميرا القمرَ رسالة: «قل لجدّي إنني تعلّمت كلمة جديدة اليوم. قل له إنني أشتاق إليه. قل له إنني بخير». لم يقل القمر شيئًا. لكنه بدا أكثر إضاءة قليلًا، كما يفعل حين يُصغي.",
+      "والآن، في كل ليلة، تقول ميرا للقمر: ليلة سعيدة. قمر واحد، فوق البيت القديم والبيت الجديد، فوق كل من تحبّهم. ليلة سعيدة يا قمر. ليلة سعيدة يا جدّي. ليلة سعيدة يا ميرا."
+    ],
+    "grownUp": "اسألوا: لمن تحبّ أن يقول القمر «ليلة سعيدة» الليلة؟"
+  }
+}

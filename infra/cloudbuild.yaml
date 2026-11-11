@@ -1,0 +1,14 @@
+# Builds both images in Cloud Build. Called by infra/deploy.sh.
+steps:
+  - id: app
+    name: gcr.io/cloud-builders/docker
+    args: ['build', '-f', 'infra/Dockerfile.app', '-t', '${_IMAGE_APP}', '.']
+  - id: media
+    name: gcr.io/cloud-builders/docker
+    args: ['build', '-f', 'infra/Dockerfile.media', '-t', '${_IMAGE_MEDIA}', '.']
+    waitFor: ['-']
+images:
+  - '${_IMAGE_APP}'
+  - '${_IMAGE_MEDIA}'
+options:
+  logging: CLOUD_LOGGING_ONLY

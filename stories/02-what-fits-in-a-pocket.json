@@ -1,0 +1,35 @@
+{
+  "id": "what-fits-in-a-pocket",
+  "order": 2,
+  "cover": "pocket",
+  "theme": {
+    "en": "Leaving home",
+    "ar": "ترك البيت"
+  },
+  "en": {
+    "title": "What Fits in a Pocket",
+    "pages": [
+      "When Sami's family had to leave, there was only time to pack one small bag each. Sami looked around his room. His bed would not fit. His window would not fit. The tree outside, where the birds argued every morning, would definitely not fit.",
+      "'How can I take home with me,' he asked his grandmother, 'if home is too big for a bag?'",
+      "Grandmother smiled and opened her hand. It was empty. 'Some things fit in a pocket,' she said. 'Watch.' She hummed the song she sang every time she made tea. 'There. That's in your pocket now.' She told him the story of the clever fox. 'That too.' She said his name the way only she said it. 'And that.'",
+      "So Sami packed. The smell of bread in the morning. His father's laugh. The game he played with his cousins on the stairs. The way his mother called him in for dinner. They took up no room at all.",
+      "In the new place, the room was small and the walls were bare. Sami felt empty, as if his bag had nothing in it. Then Grandmother sat on the floor and began to hum the tea song.",
+      "Sami reached into his pocket, and there it was. He hummed too. His father laughed his laugh. His mother called him for dinner, the same way as always. The bare room began to feel warm.",
+      "That night Sami understood. They had not left home behind. They had folded it up small, small enough to carry, and brought it with them. Goodnight, Sami. Goodnight, everything in your pocket."
+    ],
+    "grownUp": "Ask: what did you bring with you that nobody can see? A song, a game, a word?"
+  },
+  "ar": {
+    "title": "ما يحمله الجيب",
+    "pages": [
+      "حين اضطرت عائلة سامي إلى الرحيل، لم يكن هناك وقت إلا لحزم حقيبة صغيرة واحدة لكل واحد. نظر سامي حول غرفته. سريره لن يدخل في الحقيبة. نافذته لن تدخل. والشجرة في الخارج، حيث تتشاجر العصافير كل صباح، لن تدخل أبدًا.",
+      "سأل جدّته: «كيف آخذ البيت معي، إذا كان البيت أكبر من الحقيبة؟»",
+      "ابتسمت الجدّة وفتحت يدها. كانت فارغة. قالت: «بعض الأشياء تدخل في الجيب. انظر». ودندنت الأغنية التي تغنّيها كلما أعدّت الشاي. «ها هي. صارت في جيبك الآن». ثم حكت له حكاية الثعلب الذكي. «وهذه أيضًا». ونادته باسمه بالطريقة التي لا يناديه بها أحد غيرها. «وهذه كذلك».",
+      "فبدأ سامي يحزم. رائحة الخبز في الصباح. ضحكة أبيه. اللعبة التي كان يلعبها مع أبناء عمّه على الدرج. الطريقة التي تناديه بها أمّه إلى العشاء. ولم يأخذ أيٌّ منها مكانًا على الإطلاق.",
+      "في المكان الجديد، كانت الغرفة صغيرة والجدران فارغة. شعر سامي بالفراغ، كأن حقيبته لا شيء فيها. ثم جلست جدّته على الأرض وبدأت تدندن أغنية الشاي.",
+      "مدّ سامي يده إلى جيبه، فوجدها هناك. فدندن هو أيضًا. وضحك أبوه ضحكته. ونادته أمّه إلى العشاء، بالطريقة نفسها كما دائمًا. وبدأت الغرفة الفارغة تصبح دافئة.",
+      "في تلك الليلة فهم سامي. لم يتركوا البيت خلفهم. لقد طووه صغيرًا، صغيرًا بما يكفي ليحملوه، وأحضروه معهم. ليلة سعيدة يا سامي. ليلة سعيدة لكل ما في جيبك."
+    ],
+    "grownUp": "اسألوا: ما الذي أحضرته معك ولا يستطيع أحد أن يراه؟ أغنية، لعبة، كلمة؟"
+  }
+}

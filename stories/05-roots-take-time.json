@@ -1,0 +1,35 @@
+{
+  "id": "roots-take-time",
+  "order": 5,
+  "cover": "roots",
+  "theme": {
+    "en": "Settling in takes time",
+    "ar": "الاستقرار يحتاج إلى وقت"
+  },
+  "en": {
+    "title": "Roots Take Time",
+    "pages": [
+      "When Zahra's family moved, her father carried a little olive tree in a pot. It had come from their garden. It had silvery leaves and a thin, brave trunk.",
+      "In the new place they found a patch of earth behind the building, and together they planted the tree. Zahra patted the soil down with her hands. 'There,' she said. 'Now you live here.'",
+      "But the next morning, the little tree's leaves were drooping. Some had turned yellow. 'It's sad,' said Zahra. 'It doesn't like it here.'",
+      "Her father knelt beside her. 'It's busy,' he said. 'Under the ground, where we can't see, it is growing roots. Finding water. Learning the new soil. That's hard work. It doesn't have much left over for leaves yet.'",
+      "So Zahra waited. She gave the tree water. She told it about her day. Some days she felt droopy too, and on those days she sat beside it, and they were droopy together.",
+      "Then one morning, at the end of a branch, there was something new: a tiny leaf, soft and silver-green. Zahra ran to tell her father. 'It's growing!' she shouted. 'The roots must be ready!'",
+      "That night, Zahra thought about the tree, holding on in the dark under the ground. She thought she might have roots too, growing quietly, a little more each day. Roots take time. Then come the leaves. Goodnight, Zahra. Goodnight, little tree."
+    ],
+    "grownUp": "Ask: what felt hard when we first arrived, and feels a little easier now?"
+  },
+  "ar": {
+    "title": "الجذور تحتاج إلى وقت",
+    "pages": [
+      "حين انتقلت عائلة زهرة، حمل أبوها شجرة زيتون صغيرة في أصيص. كانت من حديقتهم. لها أوراق فضيّة وجذع رفيع شجاع.",
+      "في المكان الجديد، وجدوا قطعة أرض خلف البناية، وزرعوا الشجرة معًا. ربّتت زهرة على التراب بيديها وقالت: «هكذا. الآن صرتِ تعيشين هنا».",
+      "لكن في الصباح التالي، كانت أوراق الشجرة الصغيرة متدلّية. وبعضها صار أصفر. قالت زهرة: «إنها حزينة. لا تحبّ المكان هنا».",
+      "جثا أبوها بجانبها وقال: «إنها مشغولة. تحت الأرض، حيث لا نستطيع أن نرى، هي تنمّي جذورها. تبحث عن الماء. وتتعرّف على التراب الجديد. هذا عمل صعب. ولا يبقى لها الآن الكثير من القوة للأوراق».",
+      "فانتظرت زهرة. سقت الشجرة. وحكت لها عن يومها. وفي بعض الأيام كانت زهرة تشعر أنها متدلّية هي أيضًا، وفي تلك الأيام كانت تجلس بجانب الشجرة، وكانتا متدلّيتين معًا.",
+      "ثم في صباح ما، في طرف أحد الأغصان، كان هناك شيء جديد: ورقة صغيرة جدًا، ناعمة، فضيّة خضراء. ركضت زهرة لتخبر أباها وهي تصيح: «إنها تكبر! لا بد أن الجذور صارت جاهزة!»",
+      "في تلك الليلة، فكّرت زهرة في الشجرة، متمسّكة بالأرض في الظلام تحت التراب. وفكّرت أنه ربما لها هي أيضًا جذور، تنمو بهدوء، أكثر قليلًا كل يوم. الجذور تحتاج إلى وقت. ثم تأتي الأوراق. ليلة سعيدة يا زهرة. ليلة سعيدة أيتها الشجرة الصغيرة."
+    ],
+    "grownUp": "اسألوا: ما الشيء الذي كان صعبًا حين وصلنا، وصار أسهل قليلًا الآن؟"
+  }
+}

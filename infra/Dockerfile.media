@@ -1,0 +1,18 @@
+# Image for the "transcoder" service and the "publish" job: the same code
+# plus ffmpeg for audio work.
+FROM node:22-slim
+ENV NODE_ENV=production
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ffmpeg ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund
+COPY shared ./shared
+COPY stories ./stories
+COPY covers ./covers
+COPY jobs ./jobs
+COPY services ./services
+USER node
+EXPOSE 8080
+CMD ["node", "services/transcoder/server.js"]

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Free bedtime stories, read aloud, for children who have had to leave home. Works offline. No sign-up, no tracking.">
+<meta name="theme-color" content="#141a3d">
+<meta property="og:title" content="Same Moon: bedtime stories for children far from home">
+<meta property="og:description" content="Free stories, read aloud, in English and Arabic. Works offline. No sign-up, no tracking.">
+<meta property="og:image" content="/icons/og.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<title>Same Moon · Bedtime stories for children far from home</title>
+</head>
+<body>
+<a class="skip" href="#view" data-t="skip">Skip to content</a>
+<header class="top">
+  <a href="#/" class="brand" aria-label="Same Moon">
+    <img src="/icons/icon.svg" alt="" width="34" height="34">
+    <span data-t="appName">Same Moon</span>
+  </a>
+  <label class="langpick">
+    <span class="visually-hidden" data-t="language">Language</span>
+    <select id="lang"></select>
+  </label>
+</header>
+<div id="offline" class="banner" hidden data-t="offline">You're offline. Saved stories still work.</div>
+<main id="view" tabindex="-1">
+  <div class="loading" aria-live="polite"><div class="moon-spin"></div></div>
+</main>
+<nav class="bottom" aria-label="Main">
+  <a href="#/" data-nav="stories"><span class="ico" aria-hidden="true">☾</span><span data-t="navStories">Stories</span></a>
+  <a href="#/calm" data-nav="calm"><span class="ico" aria-hidden="true">◯</span><span data-t="navCalm">Calm</span></a>
+  <a href="#/grown-ups" data-nav="grown-ups"><span class="ico" aria-hidden="true">✦</span><span data-t="navGrownUps">Grown-ups</span></a>
+</nav>
+<noscript><p class="noscript">Same Moon needs JavaScript to play stories.</p></noscript>
+<script src="/app.js" defer></script>
+</body>
+</html>

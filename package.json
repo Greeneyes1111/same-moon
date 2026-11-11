@@ -1,0 +1,22 @@
+{
+  "name": "same-moon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free bedtime stories, read aloud, for children who have had to leave home.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "covers": "python3 tools/make_covers.py",
+    "publish:local": "node jobs/publish/run.js --tts=fake --approve-all",
+    "web": "node services/web/server.js",
+    "studio": "node services/studio/server.js",
+    "transcoder": "node services/transcoder/server.js"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^8.4.0",
+    "google-auth-library": "^11.3.4"
+  }
+}

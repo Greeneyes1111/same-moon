@@ -1,0 +1,35 @@
+{
+  "id": "two-words-for-friend",
+  "order": 4,
+  "cover": "words",
+  "theme": {
+    "en": "A new language, a new friend",
+    "ar": "لغة جديدة، وصديق جديد"
+  },
+  "en": {
+    "title": "Two Words for Friend",
+    "pages": [
+      "On her first day at the new school, Lina did not understand the words. The teacher's words, the children's words, the words on the walls. They went past her like birds, too fast to catch.",
+      "So Lina said nothing. She sat very still, like a closed box, and waited for the day to end.",
+      "At playtime, a boy called Adam sat next to her on the step. He pointed to himself. 'Adam,' he said. Lina pointed to herself. 'Lina,' she said. That was easy. Names are the same in every language.",
+      "Then Adam waved and said a word. Lina guessed it meant hello. She said the word for hello in her own language. Adam tried to say it back, and it came out all wrong, and they both laughed. Laughing is the same in every language too.",
+      "After that, they made a deal: one word every day. Adam taught Lina 'ball'. Lina taught Adam 'sun'. Adam taught her 'run', and they ran. Lina taught him 'again', and they ran again.",
+      "Some days Lina still felt like a closed box. But every day, one more word lifted the lid a little.",
+      "By the end of the month, Lina had two words for ball, two words for sun, and two words for friend. And she had one friend, which was the best word of all. Goodnight, Lina."
+    ],
+    "grownUp": "Ask: can you teach me a word from your language tonight? I'll teach you one from mine."
+  },
+  "ar": {
+    "title": "كلمتان لـ«صديق»",
+    "pages": [
+      "في يومها الأول في المدرسة الجديدة، لم تفهم لينا الكلمات. كلمات المعلّمة، وكلمات الأطفال، والكلمات على الجدران. كانت تمرّ بجانبها مثل العصافير، أسرع من أن تُمسَك.",
+      "فلم تقل لينا شيئًا. جلست ساكنة جدًا، مثل صندوق مغلق، وانتظرت أن ينتهي اليوم.",
+      "في وقت الاستراحة، جلس ولد اسمه آدم بجانبها على الدرجة. أشار إلى نفسه وقال: «آدم». فأشارت لينا إلى نفسها وقالت: «لينا». كان ذلك سهلًا. فالأسماء هي نفسها في كل اللغات.",
+      "ثم لوّح آدم بيده وقال كلمة. خمّنت لينا أنها تعني «مرحبًا». فقالت «مرحبًا» بلغتها هي. حاول آدم أن يكرّرها، فخرجت خاطئة تمامًا، فضحكا معًا. والضحك أيضًا هو نفسه في كل اللغات.",
+      "بعد ذلك، اتفقا: كلمة واحدة كل يوم. علّم آدمُ لينا كلمة «كرة». وعلّمته لينا كلمة «شمس». علّمها «اركضي»، فركضا. وعلّمته «مرة أخرى»، فركضا مرة أخرى.",
+      "في بعض الأيام، كانت لينا ما تزال تشعر أنها صندوق مغلق. لكن في كل يوم، كانت كلمة جديدة ترفع الغطاء قليلًا.",
+      "وفي آخر الشهر، صار عند لينا كلمتان لـ«كرة»، وكلمتان لـ«شمس»، وكلمتان لـ«صديق». وصار عندها صديق واحد، وهو أجمل كلمة على الإطلاق. ليلة سعيدة يا لينا."
+    ],
+    "grownUp": "اسألوا: هل تعلّمني كلمة من لغتك الليلة؟ وأنا سأعلّمك كلمة من لغتي."
+  }
+}

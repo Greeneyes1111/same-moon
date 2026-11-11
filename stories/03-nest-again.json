@@ -1,0 +1,35 @@
+{
+  "id": "nest-again",
+  "order": 3,
+  "cover": "nest",
+  "theme": {
+    "en": "Starting again, with help",
+    "ar": "البدء من جديد، بمساعدة الآخرين"
+  },
+  "en": {
+    "title": "Nest Again",
+    "pages": [
+      "Tiri was a small brown bird who lived in a nest at the top of a tall tree. The nest was made of grass and twigs and one soft blue thread. It was the best nest in the world.",
+      "One day a big wind came. It shook the tree and pulled the branches, and when it was gone, so was the nest. Tiri's family flew a long way until they found a new tree, beside a wall, near a busy road.",
+      "The new tree was strange. Its leaves were the wrong shape. Its bark smelled different. Tiri sat on a branch and fluffed up her feathers and felt very small. 'I don't know how to live here,' she said.",
+      "'Then we'll learn,' said her mother. 'And we'll build.' But building a nest takes a lot of twigs, and Tiri's family were tired.",
+      "Then a sparrow landed with a twig in her beak. 'For your nest,' she said. A pigeon brought a feather. A tiny wren brought a curl of string. 'We were new here once too,' said the wren.",
+      "Twig by twig, the new nest grew. And right in the middle, Tiri tucked something she had kept safe under her wing all this time: the soft blue thread from the old nest.",
+      "The new nest was not the same as the old one. It was a new nest with an old thread in its heart. And when the wind blew that night, it rocked Tiri gently, and she was warm. Goodnight, Tiri."
+    ],
+    "grownUp": "Ask: who has helped you, like the sparrow and the wren? Who could you help?"
+  },
+  "ar": {
+    "title": "عشّ من جديد",
+    "pages": [
+      "كانت تيري عصفورة صغيرة بنّية اللون، تعيش في عشّ في أعلى شجرة طويلة. كان العشّ مصنوعًا من العشب والأغصان الصغيرة وخيط أزرق ناعم واحد. كان أجمل عشّ في العالم.",
+      "وفي يوم من الأيام، هبّت ريح كبيرة. هزّت الشجرة وشدّت أغصانها، وحين هدأت، كان العشّ قد ذهب معها. طارت عائلة تيري مسافة طويلة حتى وجدت شجرة جديدة، بجانب جدار، قرب طريق مزدحم.",
+      "كانت الشجرة الجديدة غريبة. أوراقها بشكل آخر. ولحاؤها له رائحة مختلفة. جلست تيري على غصن ونفشت ريشها وشعرت أنها صغيرة جدًا. قالت: «لا أعرف كيف أعيش هنا».",
+      "قالت أمّها: «إذن سنتعلّم. وسنبني». لكن بناء العشّ يحتاج إلى أغصان كثيرة، وكانت عائلة تيري متعبة.",
+      "ثم حطّت عصفورة دوريّ وفي منقارها غصن صغير. قالت: «هذا لعشّكم». وأحضرت حمامة ريشة. وأحضر طائر صغير جدًا قطعة خيط ملفوفة، وقال: «كنّا جددًا هنا نحن أيضًا ذات يوم».",
+      "غصنًا بعد غصن، كبر العشّ الجديد. وفي وسطه تمامًا، وضعت تيري شيئًا خبّأته تحت جناحها طوال هذا الوقت: الخيط الأزرق الناعم من العشّ القديم.",
+      "لم يكن العشّ الجديد مثل القديم. كان عشًّا جديدًا في قلبه خيط قديم. وحين هبّت الريح تلك الليلة، هزّ العشُّ تيري برفق، وكانت دافئة. ليلة سعيدة يا تيري."
+    ],
+    "grownUp": "اسألوا: من ساعدك، مثل عصفورة الدوريّ والطائر الصغير؟ ومن تستطيع أنت أن تساعده؟"
+  }
+}

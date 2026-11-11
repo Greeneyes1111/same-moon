@@ -1,0 +1,35 @@
+{
+  "id": "omar-and-the-shadows",
+  "order": 8,
+  "cover": "shadows",
+  "theme": {
+    "en": "Fear of the dark in a new room",
+    "ar": "الخوف من الظلام في غرفة جديدة"
+  },
+  "en": {
+    "title": "Omar and the Shadows",
+    "pages": [
+      "Omar's new bedroom was full of shadows he didn't know. In his old room, he knew every shadow by heart. Here, there was a tall one by the door, a lumpy one on the chair, and a long, thin one with fingers on the ceiling.",
+      "'Grandad,' Omar whispered. 'The shadows are looking at me.' Grandad came in with a small lamp and sat on the end of the bed. 'Then let's say hello to them,' he said. 'It's rude not to know their names.'",
+      "He shone the lamp at the tall shadow by the door. It was Omar's coat, hanging on a hook. 'Hello, Coat,' said Grandad. 'Hello, Coat,' said Omar.",
+      "The lumpy shadow on the chair was Omar's school bag, with his jumper on top. 'Hello, Bag. Hello, Jumper.' And the long, thin one with fingers? Grandad opened the curtain. It was a tree outside, waving its branches in the street light. 'Hello, Tree,' said Omar, and the tree waved back.",
+      "'Now,' said Grandad, 'let's make some shadows of our own.' He held up his hands in front of the lamp, and a rabbit appeared on the wall, wiggling its ears. Omar made a bird that flapped its wings. Together they made a camel that walked all the way across the ceiling.",
+      "When Grandad turned the lamp down low, the room was still full of shadows. But now Omar knew all of their names. Coat, Bag, Jumper, Tree. And somewhere in the dark, a rabbit, a bird and a camel, keeping watch.",
+      "Goodnight, Coat. Goodnight, Tree. Goodnight, Omar."
+    ],
+    "grownUp": "Try it tonight: name the shadows in the room together, then make one shadow animal each."
+  },
+  "ar": {
+    "title": "عمر والظلال",
+    "pages": [
+      "كانت غرفة عمر الجديدة مليئة بظلال لا يعرفها. في غرفته القديمة، كان يحفظ كل ظلّ عن ظهر قلب. أما هنا، فكان هناك ظلّ طويل عند الباب، وظلّ منتفخ على الكرسي، وظلّ طويل رفيع له أصابع على السقف.",
+      "همس عمر: «جدّي، الظلال تنظر إليّ». دخل جدّه ومعه مصباح صغير، وجلس على طرف السرير. قال: «إذن لنسلّم عليها. ليس من الأدب ألّا نعرف أسماءها».",
+      "وجّه الجدّ الضوء إلى الظلّ الطويل عند الباب. كان معطف عمر، معلّقًا على مشجب. قال الجدّ: «مرحبًا يا معطف». وقال عمر: «مرحبًا يا معطف».",
+      "والظلّ المنتفخ على الكرسي كان حقيبة عمر المدرسية، وفوقها كنزته. «مرحبًا يا حقيبة. مرحبًا يا كنزة». والظلّ الطويل الرفيع ذو الأصابع؟ فتح الجدّ الستارة. كانت شجرة في الخارج، تلوّح بأغصانها في ضوء الشارع. قال عمر: «مرحبًا يا شجرة»، فلوّحت له الشجرة.",
+      "قال الجدّ: «والآن، لنصنع ظلالًا من عندنا». رفع يديه أمام المصباح، فظهر أرنب على الجدار، يحرّك أذنيه. وصنع عمر عصفورًا يرفرف بجناحيه. ومعًا صنعا جملًا مشى على طول السقف كله.",
+      "حين خفّض الجدّ ضوء المصباح، كانت الغرفة ما تزال مليئة بالظلال. لكن عمر صار يعرف أسماءها كلها الآن. معطف، حقيبة، كنزة، شجرة. وفي مكان ما في الظلام، أرنب وعصفور وجمل، يحرسونه.",
+      "ليلة سعيدة يا معطف. ليلة سعيدة يا شجرة. ليلة سعيدة يا عمر."
+    ],
+    "grownUp": "جرّبوها الليلة: سمّوا الظلال في الغرفة معًا، ثم ليصنع كل واحد منكم حيوانًا من الظلّ."
+  }
+}

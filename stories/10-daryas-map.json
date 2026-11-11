@@ -1,0 +1,35 @@
+{
+  "id": "daryas-map",
+  "order": 10,
+  "cover": "map",
+  "theme": {
+    "en": "Getting to know a new place",
+    "ar": "التعرّف على مكان جديد"
+  },
+  "en": {
+    "title": "Darya's Map",
+    "pages": [
+      "When Darya arrived in the new town, it felt like a puzzle with all the pieces mixed up. Every street looked the same. Every corner was a question. She held her father's hand very tight.",
+      "'Let's make a map,' said her father. He found a big piece of paper and a pencil. 'We'll draw only the places we know. That's how every map in the world began.'",
+      "On the first day, the map was nearly empty: just their building, a small square with a door. 'Home,' Darya wrote underneath. It looked lonely in all that white.",
+      "The next day they found the bakery on the corner, where the baker gave Darya a sesame biscuit. She drew it with a smiling loaf on top. Then the bench with the green paint. Then the big tree where the pigeons gathered. Then the school, with its red gate.",
+      "Each day, the map grew. Darya drew the shop where the man sang while he stacked oranges. The door where her friend Leila lived. The corner where you could see the mountains on a clear day. Little by little, the white spaces filled with places she knew.",
+      "One evening, Darya walked from the bakery to the bench to the big tree and back home, all by herself, while her father watched from the window. She didn't need the map. The map was in her head now.",
+      "She pinned the paper on the wall above her bed. It was not the whole town, not yet. But it was her town, piece by piece. Goodnight, bakery. Goodnight, bench. Goodnight, Darya."
+    ],
+    "grownUp": "Draw a map together of the places you know near your new home. Add one new place each week."
+  },
+  "ar": {
+    "title": "خريطة داريا",
+    "pages": [
+      "حين وصلت داريا إلى المدينة الجديدة، بدت لها مثل أحجية اختلطت كل قطعها. كل الشوارع تبدو متشابهة. وكل زاوية سؤال. أمسكت يد أبيها بقوة شديدة.",
+      "قال أبوها: «لنصنع خريطة». وأحضر ورقة كبيرة وقلم رصاص. «سنرسم فقط الأماكن التي نعرفها. هكذا بدأت كل خريطة في العالم».",
+      "في اليوم الأول، كانت الخريطة شبه فارغة: فقط بنايتهم، مربع صغير له باب. كتبت داريا تحته: «البيت». بدا وحيدًا وسط كل ذلك البياض.",
+      "في اليوم التالي، وجدا المخبز عند الزاوية، حيث أعطى الخبّاز داريا كعكة بالسمسم. رسمته داريا وفوقه رغيف مبتسم. ثم المقعد ذو الطلاء الأخضر. ثم الشجرة الكبيرة حيث يجتمع الحمام. ثم المدرسة، ببوابتها الحمراء.",
+      "وفي كل يوم، كانت الخريطة تكبر. رسمت داريا الدكّان حيث يغنّي الرجل وهو يرتّب البرتقال. والباب حيث تسكن صديقتها ليلى. والزاوية التي يمكنك أن ترى منها الجبال في يوم صافٍ. وشيئًا فشيئًا، امتلأت المساحات البيضاء بأماكن تعرفها.",
+      "وفي إحدى الأمسيات، مشت داريا من المخبز إلى المقعد إلى الشجرة الكبيرة ثم عادت إلى البيت، وحدها تمامًا، بينما كان أبوها يراقبها من النافذة. لم تكن تحتاج إلى الخريطة. لقد صارت الخريطة في رأسها الآن.",
+      "علّقت الورقة على الجدار فوق سريرها. لم تكن المدينة كلها، ليس بعد. لكنها كانت مدينتها هي، قطعة بعد قطعة. ليلة سعيدة أيها المخبز. ليلة سعيدة أيها المقعد. ليلة سعيدة يا داريا."
+    ],
+    "grownUp": "ارسموا معًا خريطة للأماكن التي تعرفونها قرب بيتكم الجديد. وأضيفوا مكانًا جديدًا كل أسبوع."
+  }
+}

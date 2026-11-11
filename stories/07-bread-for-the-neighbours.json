@@ -1,0 +1,35 @@
+{
+  "id": "bread-for-the-neighbours",
+  "order": 7,
+  "cover": "bread",
+  "theme": {
+    "en": "Belonging through small kindnesses",
+    "ar": "الانتماء من خلال اللطف الصغير"
+  },
+  "en": {
+    "title": "Bread for the Neighbours",
+    "pages": [
+      "The new kitchen was tiny, but it was big enough for bread. Noor and her mother mixed the flour and water and salt, and Noor pressed her knuckles into the dough the way her mother showed her. Soon the whole flat smelled like home.",
+      "'We've made too much,' said Mother, smiling. 'Take some to the lady next door.'",
+      "Noor wasn't sure. The lady next door never said hello. She had a frowning face and a cat who stared. But Noor wrapped two warm loaves in a cloth, knocked on the door, and held them out.",
+      "The lady looked at the bread. Then at Noor. And then her frowning face did something surprising. It smiled. 'For me?' she said. She held the bread close, the way you hold something precious.",
+      "The next morning, there was a bowl by Noor's door, full of oranges. The day after, the lady upstairs left a pot of soup. The boy downstairs gave Noor a drawing of a cat. A neighbour's grandfather fixed the dripping tap. Everyone, it turned out, had been waiting for someone to knock first.",
+      "Every week, Noor and her mother baked a little too much bread on purpose. And every week, the building knew a little more about them, and they knew a little more about the building.",
+      "That night, Noor fell asleep to the sound of the neighbour's radio through the wall, playing a song she didn't know yet. It didn't sound strange any more. It sounded like neighbours. Goodnight, Noor."
+    ],
+    "grownUp": "Ask: who could we share something with this week?"
+  },
+  "ar": {
+    "title": "خبز للجيران",
+    "pages": [
+      "كان المطبخ الجديد صغيرًا جدًا، لكنه كان كبيرًا بما يكفي للخبز. خلطت نور وأمّها الطحين والماء والملح، وضغطت نور العجين بمفاصل أصابعها كما علّمتها أمّها. وبعد قليل، امتلأت الشقة كلها برائحة البيت.",
+      "قالت الأم مبتسمة: «لقد خبزنا أكثر من اللازم. خذي بعضه إلى الجارة».",
+      "لم تكن نور متأكدة. فالجارة لم تكن تقول «مرحبًا» أبدًا. كان وجهها عابسًا، وعندها قطّة تحدّق. لكن نور لفّت رغيفين دافئين بقطعة قماش، وطرقت الباب، ومدّت يديها بهما.",
+      "نظرت الجارة إلى الخبز. ثم إلى نور. ثم فعل وجهها العابس شيئًا مفاجئًا. لقد ابتسم. قالت: «هذا لي؟» وضمّت الخبز إليها، كما يضمّ المرء شيئًا ثمينًا.",
+      "في الصباح التالي، كان هناك وعاء أمام باب نور، مليء بالبرتقال. وفي اليوم الذي بعده، تركت جارة الطابق العلوي قِدرًا من الحساء. وأعطى ولد الطابق السفلي نور رسمة لقطّة. وأصلح جدّ أحد الجيران الحنفية التي تقطر. لقد تبيّن أن الجميع كانوا ينتظرون أحدًا يطرق الباب أولًا.",
+      "في كل أسبوع، صارت نور وأمّها تخبزان أكثر قليلًا من اللازم، عن قصد. وفي كل أسبوع، صارت البناية تعرف عنهما أكثر قليلًا، وصارتا تعرفان عن البناية أكثر قليلًا.",
+      "في تلك الليلة، نامت نور على صوت مذياع الجارة من خلف الجدار، يعزف أغنية لم تكن تعرفها بعد. لم يعد الصوت غريبًا. صار يبدو مثل صوت الجيران. ليلة سعيدة يا نور."
+    ],
+    "grownUp": "اسألوا: مع من نستطيع أن نتشارك شيئًا هذا الأسبوع؟"
+  }
+}
