@@ -1,0 +1,37 @@
+<html><head><style>
+body{margin:0;width:1270px;height:760px;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#f4f1ff;background:radial-gradient(900px 500px at 80% -100px,#3b4a92 0%,#141a3d 65%),#141a3d;position:relative}
+.kick{position:absolute;left:40px;top:34px;color:#ffe6a1;font-weight:700;letter-spacing:.5px;font-size:20px}
+h1{position:absolute;left:40px;top:58px;margin:0;font-size:40px}
+.box{position:absolute;width:190px;height:96px;border-radius:14px;padding:10px 12px;box-sizing:border-box;border:2px solid;background:#1d2558}
+.box b{display:block;font-size:19px;margin-bottom:3px}.box span{font-size:14px;line-height:1.3;color:#c9cdf0;display:block}
+.run{border-color:#6fa0ff}.run b{color:#a9c6ff}.bucket{border-color:#f2c95b}.bucket b{color:#ffe6a1}.ext{border-color:#b59cff}.ext b{color:#d8cbff}.phone{border-color:#ffb38a}.phone b{color:#ffcfb3}
+.tag{position:absolute;font-size:13px;color:#e6e8ff;background:#141a3d;padding:1px 6px;border-radius:6px;white-space:nowrap}
+.legend{position:absolute;right:40px;top:44px;font-size:14px;color:#c9cdf0;display:flex;gap:16px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:2px solid}
+svg{position:absolute;left:0;top:0}
+</style></head><body>
+<div class="kick">ON GOOGLE CLOUD RUN</div><h1>Four pieces, each with one job</h1>
+<div class="legend"><span><i style="border-color:#6fa0ff"></i>Cloud Run</span><span><i style="border-color:#f2c95b"></i>Cloud Storage</span><span><i style="border-color:#b59cff"></i>Google service</span></div>
+<svg width="1270" height="760" id="svg"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e6e8ff"/></marker></defs></svg>
+<div id="boxes"></div>
+<script>
+const C=[40,300,560,820,1060], R=[200,390,580];
+const B={
+ phone:[0,1,'phone','A family\'s phone','App + offline worker. Saved stories play with no data.'],
+ web:[1,0,'run','web','Public service. Scales to zero. App, stories, audio.'],
+ pub:[2,0,'bucket','Public bucket','Approved stories and voices only'],
+ publish:[3,0,'run','publish (job)','Narrates drafts, publishes only what was approved'],
+ tts:[4,0,'ext','Text-to-Speech','Natural voices, about 250 KB a story'],
+ up:[1,1,'bucket','Uploads bucket','Volunteer recordings. Private, deleted in 2 days'],
+ ev:[2,1,'ext','Eventarc','New upload triggers the transcoder'],
+ tr:[3,1,'run','transcoder','Private. Cleans the audio, files it for review'],
+ studio:[1,2,'run','studio','Password protected. A person approves every story'],
+ state:[4,2,'bucket','State bucket','Private: drafts, approvals, recordings under review'],
+};
+const box={};
+for(const [k,[c,r,cls,t,s]] of Object.entries(B)){const d=document.createElement('div');d.className='box '+cls;d.style.left=C[c]+'px';d.style.top=R[r]+'px';d.innerHTML='<b></b><span></span>';d.querySelector('b').textContent=t;d.querySelector('span').textContent=s;document.getElementById('boxes').append(d);box[k]={x:C[c],y:R[r],w:190,h:96};}
+function clip(a,b){const cx=a.x+a.w/2,cy=a.y+a.h/2,dx=b.x+b.w/2-cx,dy=b.y+b.h/2-cy;const sx=dx?(a.w/2+6)/Math.abs(dx):Infinity,sy=dy?(a.h/2+6)/Math.abs(dy):Infinity;const s=Math.min(sx,sy);return [cx+dx*s,cy+dy*s];}
+const E=[['phone','web','app + audio'],['web','pub','reads'],['publish','pub','approved only'],['publish','tts','narrate'],['phone','up','signed link'],['up','ev',''],['ev','tr',''],['tr','state','for review'],['studio','state','approve'],['state','publish','drafts + approvals']];
+const svg=document.getElementById('svg');
+for(const [f,t,label] of E){const [x1,y1]=clip(box[f],box[t]);const [x2,y2]=clip(box[t],box[f]);const l=document.createElementNS('http://www.w3.org/2000/svg','line');Object.entries({x1,y1,x2,y2,stroke:'#e6e8ff','stroke-width':2.2,'marker-end':'url(#a)',opacity:.85}).forEach(([k,v])=>l.setAttribute(k,v));svg.append(l);
+ if(label){const g=document.createElement('div');g.className='tag';g.textContent=label;document.body.append(g);const w=g.offsetWidth,h=g.offsetHeight;g.style.left=((x1+x2)/2-w/2)+'px';g.style.top=((y1+y2)/2-h/2)+'px';}}
+</script></body></html>
