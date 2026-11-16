@@ -4,6 +4,8 @@ Run: python3 tools/make_covers.py
 Writes covers/<name>.svg and services/web/public/icons/icon.svg
 """
 import os
+import shutil
+import subprocess
 import random
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -237,7 +239,7 @@ COVERS["map"] = svg(
 )
 
 ICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2150"/><stop offset="1" stop-color="#3b4a92"/></linearGradient></defs>
+<defs><linearGradient id="b" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="512"><stop offset="0" stop-color="#1a2150"/><stop offset="1" stop-color="#3b4a92"/></linearGradient></defs>
 <rect width="512" height="512" rx="112" fill="url(#b)"/>
 <circle cx="256" cy="246" r="132" fill="#ffe6a1"/>
 <circle cx="312" cy="206" r="116" fill="url(#b)"/>
@@ -254,6 +256,19 @@ if __name__ == "__main__":
     os.makedirs(icons, exist_ok=True)
     with open(os.path.join(icons, "icon.svg"), "w") as f:
         f.write(ICON)
+    # PNG copies for phone home screens and the Product Hunt thumbnail, drawn
+    # from the same SVG. Needs rsvg-convert (apt install librsvg2-bin).
+    pngs = [
+        (192, os.path.join(icons, "icon-192.png")),
+        (512, os.path.join(icons, "icon-512.png")),
+        (240, os.path.join(ROOT, "docs", "product-hunt", "thumbnail-240.png")),
+    ]
+    if shutil.which("rsvg-convert"):
+        for size, path in pngs:
+            subprocess.run(["rsvg-convert", "-w", str(size), "-h", str(size),
+                            os.path.join(icons, "icon.svg"), "-o", path], check=True)
+    else:
+        print("rsvg-convert not found: PNG icons not redrawn")
     for name in COVERS:
         size = os.path.getsize(os.path.join(OUT, f"{name}.svg"))
         print(f"{name}.svg {size} bytes")
