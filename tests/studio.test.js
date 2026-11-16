@@ -14,11 +14,11 @@ async function setup() {
 
 const form = (obj) => ({ method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded', 'sec-fetch-site': 'same-origin' }, body: new URLSearchParams(obj), redirect: 'manual' });
 
-test('the dashboard lists every story in both languages', async () => {
+test('the dashboard lists every story in every language', async () => {
   const s = await setup();
   try {
     const html = await (await fetch(`${s.base}/`)).text();
-    assert.equal((html.match(/Waiting for review/g) || []).length, 20);
+    assert.equal((html.match(/Waiting for review/g) || []).length, 30);
   } finally {
     await s.close();
     await s.cleanup();

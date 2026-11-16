@@ -4,7 +4,8 @@
   "cover": "bread",
   "theme": {
     "en": "Belonging through small kindnesses",
-    "ar": "الانتماء من خلال اللطف الصغير"
+    "ar": "الانتماء من خلال اللطف الصغير",
+    "es": "Sentirse parte, con pequeñas bondades"
   },
   "en": {
     "title": "Bread for the Neighbours",
@@ -31,5 +32,18 @@
       "في تلك الليلة، نامت نور على صوت مذياع الجارة من خلف الجدار، يعزف أغنية لم تكن تعرفها بعد. لم يعد الصوت غريبًا. صار يبدو مثل صوت الجيران. ليلة سعيدة يا نور."
     ],
     "grownUp": "اسألوا: مع من نستطيع أن نتشارك شيئًا هذا الأسبوع؟"
+  },
+  "es": {
+    "title": "Arepas para los vecinos",
+    "pages": [
+      "La cocina nueva era chiquita, pero alcanzaba para hacer arepas. Luz y su mamá mezclaron la harina con agua y sal, y Luz amasó y aplanó la masa con las manos, como su mamá le había enseñado. Muy pronto, todo el apartamento olía a casa.",
+      "«Hicimos demasiadas», dijo mamá, sonriendo. «Llévale unas a la señora de al lado».",
+      "Luz no estaba segura. La señora de al lado nunca saludaba. Tenía la cara seria y un gato que se quedaba mirando. Pero Luz envolvió dos arepas calientitas en un paño, tocó la puerta y se las ofreció.",
+      "La señora miró las arepas. Luego miró a Luz. Y entonces su cara seria hizo algo sorprendente. Sonrió. «¿Para mí?», dijo. Abrazó las arepas contra el pecho, como se abraza algo muy valioso.",
+      "A la mañana siguiente, había un tazón junto a la puerta de Luz, lleno de naranjas. Al otro día, la señora del piso de arriba dejó una olla de sopa. El niño del piso de abajo le regaló a Luz un dibujo de un gato. El abuelo de un vecino arregló la llave que goteaba. Resultó que todos estaban esperando a que alguien tocara la puerta primero.",
+      "Cada semana, Luz y su mamá hacían unas cuantas arepas de más, a propósito. Y cada semana, el edificio sabía un poquito más de ellas, y ellas sabían un poquito más del edificio.",
+      "Esa noche, Luz se quedó dormida con el sonido de la radio de la vecina a través de la pared, que tocaba una canción que ella todavía no conocía. Ya no sonaba extraña. Sonaba a vecinos. Buenas noches, Luz."
+    ],
+    "grownUp": "Pregunta: ¿con quién podríamos compartir algo esta semana?"
   }
 }

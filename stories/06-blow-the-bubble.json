@@ -4,7 +4,8 @@
   "cover": "bubble",
   "theme": {
     "en": "Calming a racing heart",
-    "ar": "تهدئة القلب حين يدقّ بسرعة"
+    "ar": "تهدئة القلب حين يدقّ بسرعة",
+    "es": "Calmar un corazón acelerado"
   },
   "en": {
     "title": "Blow the Bubble",
@@ -31,5 +32,18 @@
       "استمرّ المطر بهدوء، ينقر على النافذة مثل أصابع صغيرة. شمّ يوسف الوردة مرة أخيرة، ونفخ أكبر فقاعة وألطفها على الإطلاق، وطار إلى النوم بداخلها. ليلة سعيدة يا يوسف."
     ],
     "grownUp": "تدرّبوا عليها معًا، حتى في الليالي الهادئة: شمّ الوردة، انفخ الفقاعة. تنجح أكثر حين تصبح مألوفة."
+  },
+  "es": {
+    "title": "Sopla la burbuja",
+    "pages": [
+      "José ya casi estaba dormido cuando llegó el trueno. ¡BUM! Rodó por el cielo e hizo temblar la ventana. El corazón de José empezó a sonar como un tambor, rápido, rápido, rápido, como si quisiera salir corriendo sin él.",
+      "Su hermana mayor, Ana, llegó enseguida. «Aquí estoy», le dijo. «Tu corazón solo está haciendo su trabajo. Está tratando de cuidarte. Vamos a ayudarlo a calmarse».",
+      "«Pon la mano en tu barriga», dijo Ana. «Ahora respira por la nariz, despacito, como si olieras una flor. Uno, dos, tres, cuatro». José respiró. Su barriga subió debajo de su mano.",
+      "«Ahora saca el aire por la boca, despacio, despacio, como si soplaras la burbuja más grande del mundo. ¡Que no se reviente!». José sopló largo y suave. Hagámoslo juntos: huele la flor... y sopla la burbuja.",
+      "Lo hicieron otra vez. Huele la flor... sopla la burbuja. Y otra vez. El corazón de José dejó de sonar como un tambor y empezó a caminar. Pasos lentos. Más lentos.",
+      "«Ahora dime tres cosas que puedes ver», dijo Ana. «La lámpara», dijo José. «Tu cara. Mi cobija con estrellas». «¿Y una cosa que puedes oír?». José escuchó. El trueno ya estaba lejos, refunfuñando solo. «La lluvia», dijo.",
+      "La lluvia siguió suavecita, tocando la ventana como deditos. José olió la flor una vez más, sopló la burbuja más grande y más suave de todas, y se fue flotando hasta quedarse dormido dentro de ella. Buenas noches, José."
+    ],
+    "grownUp": "Practíquenlo juntos, incluso en las noches tranquilas: huele la flor, sopla la burbuja. Funciona mejor cuando ya es conocido."
   }
 }

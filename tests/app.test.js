@@ -16,14 +16,16 @@ function interfaceStrings() {
   return vm.runInNewContext(code);
 }
 
-test('every English interface string has an Arabic version of the same shape', () => {
+test('every English interface string has an Arabic and a Spanish version of the same shape', () => {
   const UI = interfaceStrings();
   const en = Object.keys(UI.en);
   assert.ok(en.length > 50, `found ${en.length} keys`);
-  assert.deepEqual(en.filter((k) => !(k in UI.ar)), []);
-  for (const k of en) assert.equal(typeof UI.ar[k], typeof UI.en[k], k);
-  assert.equal(UI.ar.grownUps.length, UI.en.grownUps.length);
-  assert.equal(UI.ar.pills.length, UI.en.pills.length);
+  for (const lang of ['ar', 'es']) {
+    assert.deepEqual(en.filter((k) => !(k in UI[lang])), [], lang);
+    for (const k of en) assert.equal(typeof UI[lang][k], typeof UI.en[k], `${lang}.${k}`);
+    assert.equal(UI[lang].grownUps.length, UI.en.grownUps.length, lang);
+    assert.equal(UI[lang].pills.length, UI.en.pills.length, lang);
+  }
 });
 
 test('Arabic minutes use the right plural forms', () => {

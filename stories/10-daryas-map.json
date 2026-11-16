@@ -4,7 +4,8 @@
   "cover": "map",
   "theme": {
     "en": "Getting to know a new place",
-    "ar": "التعرّف على مكان جديد"
+    "ar": "التعرّف على مكان جديد",
+    "es": "Conocer un lugar nuevo"
   },
   "en": {
     "title": "Darya's Map",
@@ -31,5 +32,18 @@
       "علّقت الورقة على الجدار فوق سريرها. لم تكن المدينة كلها، ليس بعد. لكنها كانت مدينتها هي، قطعة بعد قطعة. ليلة سعيدة أيها المخبز. ليلة سعيدة أيها المقعد. ليلة سعيدة يا داريا."
     ],
     "grownUp": "ارسموا معًا خريطة للأماكن التي تعرفونها قرب بيتكم الجديد. وأضيفوا مكانًا جديدًا كل أسبوع."
+  },
+  "es": {
+    "title": "El mapa de Daniela",
+    "pages": [
+      "Cuando Daniela llegó a la ciudad nueva, sintió que era un rompecabezas con todas las piezas revueltas. Todas las calles se veían iguales. Cada esquina era una pregunta. Le apretaba la mano a su papá muy fuerte.",
+      "«Hagamos un mapa», dijo su papá. Buscó una hoja grande y un lápiz. «Vamos a dibujar solo los lugares que conocemos. Así empezaron todos los mapas del mundo».",
+      "El primer día, el mapa estaba casi vacío: solo su edificio, un cuadradito con una puerta. «Casa», escribió Daniela debajo. Se veía solito en medio de tanto blanco.",
+      "Al día siguiente encontraron la panadería de la esquina, donde el panadero le regaló a Daniela una galleta de ajonjolí. La dibujó con un pan sonriente encima. Después, la banca pintada de verde. Después, el árbol grande donde se juntaban las palomas. Después, la escuela, con su reja roja.",
+      "Cada día, el mapa crecía. Daniela dibujó la tienda donde el señor cantaba mientras acomodaba las naranjas. La puerta donde vivía su amiga Lucía. La esquina desde donde se veían las montañas en los días despejados. Poco a poco, los espacios blancos se llenaron de lugares que conocía.",
+      "Una tarde, Daniela caminó de la panadería a la banca, al árbol grande y de vuelta a casa, ella solita, mientras su papá la miraba desde la ventana. No necesitó el mapa. El mapa ya estaba en su cabeza.",
+      "Pegó la hoja en la pared, encima de su cama. No era toda la ciudad, todavía no. Pero era su ciudad, pedacito a pedacito. Buenas noches, panadería. Buenas noches, banca. Buenas noches, Daniela."
+    ],
+    "grownUp": "Dibujen juntos un mapa de los lugares que conocen cerca de su casa nueva. Agreguen un lugar nuevo cada semana."
   }
 }

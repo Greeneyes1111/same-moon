@@ -4,7 +4,8 @@
   "cover": "pocket",
   "theme": {
     "en": "Leaving home",
-    "ar": "ترك البيت"
+    "ar": "ترك البيت",
+    "es": "Dejar la casa"
   },
   "en": {
     "title": "What Fits in a Pocket",
@@ -31,5 +32,18 @@
       "في تلك الليلة فهم سامي. لم يتركوا البيت خلفهم. لقد طووه صغيرًا، صغيرًا بما يكفي ليحملوه، وأحضروه معهم. ليلة سعيدة يا سامي. ليلة سعيدة لكل ما في جيبك."
     ],
     "grownUp": "اسألوا: ما الذي أحضرته معك ولا يستطيع أحد أن يراه؟ أغنية، لعبة، كلمة؟"
+  },
+  "es": {
+    "title": "Lo que cabe en un bolsillo",
+    "pages": [
+      "Cuando la familia de Samuel tuvo que irse, solo hubo tiempo de empacar una maleta pequeña para cada uno. Samuel miró su cuarto. Su cama no cabía. Su ventana no cabía. Y el árbol de afuera, donde los pájaros discutían cada mañana, definitivamente no cabía.",
+      "«¿Cómo puedo llevarme mi casa», le preguntó a su abuela, «si mi casa es demasiado grande para una maleta?»",
+      "La abuela sonrió y abrió la mano. Estaba vacía. «Algunas cosas caben en un bolsillo», dijo. «Mira». Tarareó la canción que cantaba cada vez que preparaba el café. «Listo. Eso ya está en tu bolsillo». Le contó el cuento del zorro astuto. «Eso también». Dijo su nombre como solo ella lo decía. «Y eso».",
+      "Así que Samuel empacó. El olor del pan en la mañana. La risa de su papá. El juego con sus primos en las escaleras. La manera en que su mamá lo llamaba a cenar. No ocuparon nada de espacio.",
+      "En el lugar nuevo, el cuarto era pequeño y las paredes estaban vacías. Samuel se sintió vacío, como si su maleta no tuviera nada adentro. Entonces la abuela se sentó en el piso y empezó a tararear la canción del café.",
+      "Samuel metió la mano en su bolsillo, y ahí estaba. Él también tarareó. Su papá se rio con su risa de siempre. Su mamá lo llamó a cenar, igual que siempre. El cuarto vacío empezó a sentirse tibio.",
+      "Esa noche Samuel entendió. No habían dejado su casa atrás. La habían doblado chiquita, lo bastante chiquita para llevarla, y la habían traído con ellos. Buenas noches, Samuel. Buenas noches a todo lo que llevas en tu bolsillo."
+    ],
+    "grownUp": "Pregunta: ¿qué trajiste contigo que nadie puede ver? ¿Una canción, un juego, una palabra?"
   }
 }

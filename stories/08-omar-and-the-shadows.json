@@ -4,7 +4,8 @@
   "cover": "shadows",
   "theme": {
     "en": "Fear of the dark in a new room",
-    "ar": "الخوف من الظلام في غرفة جديدة"
+    "ar": "الخوف من الظلام في غرفة جديدة",
+    "es": "Miedo a la oscuridad en un cuarto nuevo"
   },
   "en": {
     "title": "Omar and the Shadows",
@@ -31,5 +32,18 @@
       "ليلة سعيدة يا معطف. ليلة سعيدة يا شجرة. ليلة سعيدة يا عمر."
     ],
     "grownUp": "جرّبوها الليلة: سمّوا الظلال في الغرفة معًا، ثم ليصنع كل واحد منكم حيوانًا من الظلّ."
+  },
+  "es": {
+    "title": "Andrés y las sombras",
+    "pages": [
+      "El cuarto nuevo de Andrés estaba lleno de sombras que no conocía. En su cuarto de antes, se sabía todas las sombras de memoria. Aquí había una alta junto a la puerta, una abultada en la silla y una larga y flaca con dedos en el techo.",
+      "«Abuelo», susurró Andrés. «Las sombras me están mirando». El abuelo entró con una lamparita y se sentó al pie de la cama. «Entonces vamos a saludarlas», dijo. «Es de mala educación no saber cómo se llaman».",
+      "Alumbró la sombra alta junto a la puerta. Era el abrigo de Andrés, colgado de un gancho. «Hola, Abrigo», dijo el abuelo. «Hola, Abrigo», dijo Andrés.",
+      "La sombra abultada en la silla era la mochila de la escuela, con su suéter encima. «Hola, Mochila. Hola, Suéter». ¿Y la larga y flaca con dedos? El abuelo abrió la cortina. Era un árbol de afuera, moviendo las ramas con la luz de la calle. «Hola, Árbol», dijo Andrés, y el árbol lo saludó.",
+      "«Ahora», dijo el abuelo, «hagamos unas sombras nuestras». Levantó las manos frente a la lámpara, y en la pared apareció un conejo que movía las orejas. Andrés hizo un pájaro que aleteaba. Juntos hicieron un camello que caminó por todo el techo.",
+      "Cuando el abuelo bajó la luz de la lámpara, el cuarto seguía lleno de sombras. Pero ahora Andrés sabía cómo se llamaban todas. Abrigo, Mochila, Suéter, Árbol. Y en algún lugar de la oscuridad, un conejo, un pájaro y un camello, cuidándolo.",
+      "Buenas noches, Abrigo. Buenas noches, Árbol. Buenas noches, Andrés."
+    ],
+    "grownUp": "Prueben esta noche: digan juntos los nombres de las sombras del cuarto, y luego hagan cada uno un animal de sombra."
   }
 }

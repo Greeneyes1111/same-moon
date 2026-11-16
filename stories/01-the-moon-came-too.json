@@ -4,7 +4,8 @@
   "cover": "moon",
   "theme": {
     "en": "Missing people who are far away",
-    "ar": "الاشتياق إلى من هم بعيدون"
+    "ar": "الاشتياق إلى من هم بعيدون",
+    "es": "Extrañar a quienes están lejos"
   },
   "en": {
     "title": "The Moon Came Too",
@@ -31,5 +32,18 @@
       "والآن، في كل ليلة، تقول ميرا للقمر: ليلة سعيدة. قمر واحد، فوق البيت القديم والبيت الجديد، فوق كل من تحبّهم. ليلة سعيدة يا قمر. ليلة سعيدة يا جدّي. ليلة سعيدة يا ميرا."
     ],
     "grownUp": "اسألوا: لمن تحبّ أن يقول القمر «ليلة سعيدة» الليلة؟"
+  },
+  "es": {
+    "title": "La luna también vino",
+    "pages": [
+      "La noche en que se fueron, Sofía miró la luna. Estaba redonda y brillante sobre el techo de su antigua casa, sobre el limonero, sobre la ventana del abuelo. «Adiós, luna», susurró. Estaba segura de que la luna se quedaría allí.",
+      "En el lugar nuevo, todo era diferente. Las calles tenían otros sonidos. El pan tenía otro olor. Hasta la oscuridad era otra clase de oscuridad. Durante tres noches, Sofía no miró el cielo. No quería ver un cielo que no era el suyo.",
+      "La cuarta noche, mamá le dijo: «Ven a la ventana. Quiero mostrarte a alguien». Sofía apoyó la nariz en el vidrio frío. Y allí, redonda y brillante sobre los techos nuevos, estaba la luna.",
+      "«¿Es la misma luna?», preguntó Sofía. «La mismita», dijo mamá. «Nos siguió todo el camino hasta aquí. Y esta noche también está brillando sobre la ventana del abuelo».",
+      "Sofía pensó en eso. El abuelo, lejos, mirando hacia arriba. La luna, mirándolos a los dos desde arriba. Era como una lámpara que compartían.",
+      "Entonces Sofía le dio un mensaje a la luna: «Dile al abuelo que hoy aprendí una palabra nueva. Dile que lo extraño. Dile que estoy bien». La luna no dijo nada. Pero pareció brillar un poquito más, como hace cuando está escuchando.",
+      "Ahora, cada noche, Sofía le da las buenas noches a la luna. Una sola luna, sobre la casa vieja y la casa nueva, sobre todas las personas que quiere. Buenas noches, luna. Buenas noches, abuelo. Buenas noches, Sofía."
+    ],
+    "grownUp": "Pregunta: ¿a quién te gustaría que la luna le diera las buenas noches esta noche?"
   }
 }

@@ -4,7 +4,8 @@
   "cover": "box",
   "theme": {
     "en": "Feelings, and noticing your own courage",
-    "ar": "المشاعر، واكتشاف شجاعتك"
+    "ar": "المشاعر، واكتشاف شجاعتك",
+    "es": "Los sentimientos, y descubrir tu propia valentía"
   },
   "en": {
     "title": "The Brave Box",
@@ -31,5 +32,18 @@
       "في تلك الليلة، وضعت مايا الصندوق بجانب وسادتها. وقالت لأمّها: «كنتِ على حق. أنا شجاعة. لكنني لم أكن أعرف ذلك بعد». ليلة سعيدة يا مايا. أنتِ أشجع مما تظنّين."
     ],
     "grownUp": "اصنعوا صندوق شجاعة معًا. أي صندوق يفي بالغرض، مع حصى أو أزرار أو بذور."
+  },
+  "es": {
+    "title": "La caja de la valentía",
+    "pages": [
+      "Maya tenía una cajita con una tapa que hacía clic. Su mamá se la dio el primer día en el lugar nuevo. «Esta es la caja de la valentía», le dijo. «Cada vez que hagas algo valiente, pon una piedrita adentro».",
+      "«Pero yo no soy valiente», dijo Maya. «Tuve miedo todo el camino hasta aquí». Su mamá sonrió. «Tener miedo y hacerlo de todos modos», dijo, «eso es exactamente ser valiente».",
+      "El lunes, Maya saludó al señor de la tienda en el idioma nuevo. Clic. Una piedrita. El martes, probó una comida nueva, verde y rara. Estaba rica. Clic. Dos piedritas.",
+      "El miércoles, Maya se sintió muy triste, lloró y le contó a su mamá por qué. «¿Eso cuenta?», preguntó. «Eso cuenta dos veces», dijo su mamá. «Decirle a alguien cómo te sientes es una de las cosas más valientes que hay». Clic, clic.",
+      "El jueves fue al parque y le preguntó a una niña si podía jugar con ella. Clic. El viernes ayudó a un niño más pequeño a encontrar su zapato perdido. Clic. El sábado durmió toda la noche sin despertarse. Clic.",
+      "Muy pronto la caja estaba tan llena de piedritas que sonaba cuando Maya la sacudía. Y también pesaba. Pesaba de tanta valentía.",
+      "Esa noche, Maya puso la caja junto a su almohada. «Tenías razón», le dijo a su mamá. «Sí soy valiente. Es que todavía no lo sabía». Buenas noches, Maya. Eres más valiente de lo que crees."
+    ],
+    "grownUp": "Hagan juntos una caja de la valentía. Sirve cualquier caja, con piedritas, botones o semillas."
   }
 }

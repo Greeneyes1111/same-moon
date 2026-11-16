@@ -12,9 +12,9 @@ test('nothing is public until a person approves it, but every draft is narrated 
   try {
     const { catalogue, summary } = await publish({ store, tts: 'fake', stories: two });
     assert.equal(catalogue.stories.length, 0);
-    assert.equal(summary.narrated, 4);
+    assert.equal(summary.narrated, 6);
     const drafts = await store.list('state', 'audio/');
-    assert.equal(drafts.filter((k) => k.endsWith('.webm')).length, 4);
+    assert.equal(drafts.filter((k) => k.endsWith('.webm')).length, 6);
     assert.deepEqual(await store.list('public', 'audio/'), []);
   } finally {
     await cleanup();

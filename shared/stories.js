@@ -43,6 +43,10 @@ export const GUARD_WORDS = {
     'missile', 'rocket', 'prison', 'police', 'checkpoint', 'border'],
   ar: ['حرب', 'الحرب', 'جندي', 'جنود', 'بندقية', 'قنبلة', 'قنابل', 'قصف', 'قتل', 'مقتل', 'ميت', 'مات', 'ماتت', 'موت', 'دم',
     'دماء', 'غرق', 'انفجار', 'دبابة', 'جيش', 'صاروخ', 'سجن', 'شرطة', 'حاجز', 'حدود'],
+  es: ['guerra', 'guerras', 'soldado', 'soldados', 'arma', 'armas', 'pistola', 'fusil', 'bomba', 'bombas', 'bombardeo',
+    'disparo', 'disparos', 'disparar', 'balazo', 'matar', 'mató', 'muerto', 'muerta', 'muertos', 'morir', 'murió', 'sangre',
+    'ahogó', 'ahogarse', 'ahogado', 'explosión', 'tanque', 'ejército', 'misil', 'cohete', 'cárcel', 'prisión', 'policía',
+    'frontera', 'retén'],
 };
 
 function arabicVariants(token) {

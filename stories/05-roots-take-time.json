@@ -4,7 +4,8 @@
   "cover": "roots",
   "theme": {
     "en": "Settling in takes time",
-    "ar": "الاستقرار يحتاج إلى وقت"
+    "ar": "الاستقرار يحتاج إلى وقت",
+    "es": "Adaptarse lleva tiempo"
   },
   "en": {
     "title": "Roots Take Time",
@@ -31,5 +32,18 @@
       "في تلك الليلة، فكّرت زهرة في الشجرة، متمسّكة بالأرض في الظلام تحت التراب. وفكّرت أنه ربما لها هي أيضًا جذور، تنمو بهدوء، أكثر قليلًا كل يوم. الجذور تحتاج إلى وقت. ثم تأتي الأوراق. ليلة سعيدة يا زهرة. ليلة سعيدة أيتها الشجرة الصغيرة."
     ],
     "grownUp": "اسألوا: ما الشيء الذي كان صعبًا حين وصلنا، وصار أسهل قليلًا الآن؟"
+  },
+  "es": {
+    "title": "Las raíces necesitan tiempo",
+    "pages": [
+      "Cuando la familia de Camila se mudó, su papá llevó un olivo pequeñito en una maceta. Venía de su jardín. Tenía hojas plateadas y un tronco delgado y valiente.",
+      "En el lugar nuevo encontraron un pedacito de tierra detrás del edificio, y juntos plantaron el árbol. Camila apretó la tierra con las manos. «Listo», dijo. «Ahora vives aquí».",
+      "Pero a la mañana siguiente, las hojas del arbolito estaban caídas. Algunas se habían puesto amarillas. «Está triste», dijo Camila. «No le gusta este lugar».",
+      "Su papá se arrodilló a su lado. «Está ocupado», dijo. «Debajo de la tierra, donde no podemos ver, le están creciendo raíces. Está buscando agua. Está conociendo la tierra nueva. Ese es un trabajo difícil. Todavía no le quedan muchas fuerzas para las hojas».",
+      "Así que Camila esperó. Regó el árbol. Le contó cómo le había ido en el día. Algunos días ella también se sentía decaída, y esos días se sentaba a su lado, y estaban decaídos juntos.",
+      "Y una mañana, en la punta de una rama, había algo nuevo: una hojita diminuta, suave, de color verde plateado. Camila corrió a contarle a su papá. «¡Está creciendo!», gritó. «¡Las raíces ya deben estar listas!»",
+      "Esa noche, Camila pensó en el árbol, agarrado a la tierra en la oscuridad. Pensó que tal vez ella también tenía raíces, creciendo en silencio, un poquito más cada día. Las raíces necesitan tiempo. Después llegan las hojas. Buenas noches, Camila. Buenas noches, arbolito."
+    ],
+    "grownUp": "Pregunta: ¿qué fue difícil cuando llegamos, y ahora es un poquito más fácil?"
   }
 }

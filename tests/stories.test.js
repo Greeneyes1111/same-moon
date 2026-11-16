@@ -4,10 +4,10 @@ import { loadStories, validateStory, guardHits, textHash, storyLangs, minutesFor
 
 const stories = loadStories();
 
-test('there are ten stories, in order, each in English and Arabic', () => {
+test('there are ten stories, in order, each in English, Arabic and Spanish', () => {
   assert.equal(stories.length, 10);
   assert.deepEqual(stories.map((s) => s.order), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  for (const s of stories) assert.deepEqual(storyLangs(s), ['en', 'ar'], s.id);
+  for (const s of stories) assert.deepEqual(storyLangs(s), ['en', 'ar', 'es'], s.id);
 });
 
 test('every story passes the checks (structure, matching pages, no frightening words)', () => {
@@ -39,6 +39,12 @@ test('the word guard catches Arabic words with attached prefixes', () => {
   const hits = guardHits(s, 'ar');
   assert.ok(hits.includes('حرب'), hits.join(','));
   assert.ok(hits.includes('جنود'), hits.join(','));
+});
+
+test('the word guard catches frightening words in Spanish', () => {
+  const s = structuredClone(stories[0]);
+  s.es.pages[0] += ' Llegaron los soldados.';
+  assert.deepEqual(guardHits(s, 'es'), ['soldados']);
 });
 
 test('the word guard does not flag innocent words that contain a guarded word', () => {

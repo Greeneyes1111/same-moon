@@ -4,7 +4,8 @@
   "cover": "nest",
   "theme": {
     "en": "Starting again, with help",
-    "ar": "البدء من جديد، بمساعدة الآخرين"
+    "ar": "البدء من جديد، بمساعدة الآخرين",
+    "es": "Empezar de nuevo, con ayuda"
   },
   "en": {
     "title": "Nest Again",
@@ -31,5 +32,18 @@
       "لم يكن العشّ الجديد مثل القديم. كان عشًّا جديدًا في قلبه خيط قديم. وحين هبّت الريح تلك الليلة، هزّ العشُّ تيري برفق، وكانت دافئة. ليلة سعيدة يا تيري."
     ],
     "grownUp": "اسألوا: من ساعدك، مثل عصفورة الدوريّ والطائر الصغير؟ ومن تستطيع أنت أن تساعده؟"
+  },
+  "es": {
+    "title": "Un nido nuevo",
+    "pages": [
+      "Tiri era una pajarita marrón que vivía en un nido en lo alto de un árbol muy alto. El nido estaba hecho de hierba, de ramitas y de un hilo azul y suave. Era el mejor nido del mundo.",
+      "Un día llegó un viento muy fuerte. Sacudió el árbol y jaló las ramas, y cuando se fue, el nido ya no estaba. La familia de Tiri voló muy lejos hasta encontrar un árbol nuevo, junto a un muro, cerca de una calle con mucho tráfico.",
+      "El árbol nuevo era extraño. Sus hojas tenían otra forma. Su corteza olía diferente. Tiri se posó en una rama, esponjó las plumas y se sintió muy pequeñita. «No sé cómo vivir aquí», dijo.",
+      "«Entonces aprenderemos», dijo su mamá. «Y construiremos». Pero construir un nido necesita muchas ramitas, y la familia de Tiri estaba cansada.",
+      "Entonces llegó una gorriona con una ramita en el pico. «Para su nido», dijo. Una paloma trajo una pluma. Un pajarito diminuto trajo un rizo de cuerda. «Nosotros también fuimos nuevos aquí una vez», dijo el pajarito.",
+      "Ramita a ramita, el nido nuevo fue creciendo. Y justo en el centro, Tiri puso algo que había guardado bajo su ala todo ese tiempo: el hilo azul y suave del nido viejo.",
+      "El nido nuevo no era igual al viejo. Era un nido nuevo con un hilo viejo en el corazón. Y cuando el viento sopló esa noche, meció a Tiri con suavidad, y ella estaba calientita. Buenas noches, Tiri."
+    ],
+    "grownUp": "Pregunta: ¿quién te ha ayudado, como la gorriona y el pajarito? ¿A quién podrías ayudar tú?"
   }
 }

@@ -4,7 +4,8 @@
   "cover": "words",
   "theme": {
     "en": "A new language, a new friend",
-    "ar": "لغة جديدة، وصديق جديد"
+    "ar": "لغة جديدة، وصديق جديد",
+    "es": "Un idioma nuevo, un amigo nuevo"
   },
   "en": {
     "title": "Two Words for Friend",
@@ -31,5 +32,18 @@
       "وفي آخر الشهر، صار عند لينا كلمتان لـ«كرة»، وكلمتان لـ«شمس»، وكلمتان لـ«صديق». وصار عندها صديق واحد، وهو أجمل كلمة على الإطلاق. ليلة سعيدة يا لينا."
     ],
     "grownUp": "اسألوا: هل تعلّمني كلمة من لغتك الليلة؟ وأنا سأعلّمك كلمة من لغتي."
+  },
+  "es": {
+    "title": "Dos palabras para «amigo»",
+    "pages": [
+      "En su primer día en la escuela nueva, Lina no entendía las palabras. Las palabras de la maestra, las palabras de los niños, las palabras de las paredes. Pasaban a su lado como pájaros, demasiado rápido para atraparlas.",
+      "Así que Lina no dijo nada. Se quedó muy quieta, como una caja cerrada, y esperó a que terminara el día.",
+      "En el recreo, un niño llamado Tomás se sentó a su lado en el escalón. Se señaló a sí mismo. «Tomás», dijo. Lina se señaló a sí misma. «Lina», dijo. Eso fue fácil. Los nombres son iguales en todos los idiomas.",
+      "Luego Tomás saludó con la mano y dijo una palabra. Lina adivinó que quería decir hola. Ella dijo hola en su propio idioma. Tomás intentó repetirlo, le salió todo al revés, y los dos se rieron. Reírse también es igual en todos los idiomas.",
+      "Después de eso, hicieron un trato: una palabra cada día. Tomás le enseñó a Lina «pelota». Lina le enseñó a Tomás «sol». Tomás le enseñó «corre», y corrieron. Lina le enseñó «otra vez», y corrieron otra vez.",
+      "Algunos días Lina todavía se sentía como una caja cerrada. Pero cada día, una palabra nueva levantaba la tapa un poquito.",
+      "Al final del mes, Lina tenía dos palabras para pelota, dos palabras para sol y dos palabras para amigo. Y tenía un amigo, que era la mejor palabra de todas. Buenas noches, Lina."
+    ],
+    "grownUp": "Pregunta: ¿me enseñas una palabra de tu idioma esta noche? Yo te enseño una del mío."
   }
 }
