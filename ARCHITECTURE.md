@@ -50,7 +50,7 @@ It runs when a reviewer approves something, and narration is only redone when th
 ## Built for safety
 
 - **A person approves everything.** Nothing is in the public bucket unless a reviewer approved that exact text or recording.
-- **A word guard.** The build fails if a story contains words such as war, soldier, bomb or border, in English or Arabic (including Arabic words with attached prefixes). A person must rewrite the line.
+- **A word guard.** The build fails if a story contains words such as war, soldier, bomb or border, in English, Arabic or Spanish (including Arabic words with attached prefixes). A person must rewrite the line.
 - **The computer voice is labelled.** Families always know when a person is reading.
 - **Adults only for recordings**, with explicit consent to share, and a review checklist that includes "no background voices of children".
 
@@ -63,11 +63,11 @@ It runs when a reviewer approves something, and narration is only redone when th
 
 ## Built for a cheap phone
 
-- First visit: about **37 KB** over the network, including all ten stories' text in both languages and the pictures. Covers are drawn in code, 1 to 3 KB each.
+- First visit: about **50 KB** over the network, including all ten stories' text in all three languages and the pictures. Covers are drawn in code, 1 to 3 KB each.
 - After one visit with signal, the library opens with **no signal**. Tapping "Save for offline" keeps a story's audio on the phone; it then plays with no data.
 - No framework. One script, one stylesheet.
 - Right-to-left layout, Arabic plurals and Eastern Arabic numerals for Arabic.
 
 ## Cost
 
-Everything scales to zero. Narrating all 20 story versions uses roughly 30,000 characters of Text-to-Speech. At launch-day traffic the monthly bill should be a few pounds at most.
+Everything scales to zero. Narrating all 30 story versions (ten stories in three languages) uses roughly 40,000 characters of Text-to-Speech. At launch-day traffic the monthly bill should be a few pounds at most.

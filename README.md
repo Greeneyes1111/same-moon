@@ -2,7 +2,7 @@
 
 Free bedtime stories, read aloud, for children who have had to leave home.
 
-Ten short, gentle stories in English and Arabic about the things children far from home carry with them: missing people, a new language, a new room, new streets. Each one ends calmly, with a question for the grown-up to ask. There is a breathing exercise for hard nights, and families can save stories to play with no internet and no data.
+Ten short, gentle stories in English, Arabic and Spanish about the things children far from home carry with them: missing people, a new language, a new room, new streets. Each one ends calmly, with a question for the grown-up to ask. There is a breathing exercise for hard nights, and families can save stories to play with no internet and no data.
 
 No accounts, no adverts, no tracking. Every story and every voice recording is approved by a person before a child can hear it.
 
