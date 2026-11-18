@@ -113,6 +113,7 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
 .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .btn.primary { background: var(--moon); color: var(--night); border-color: var(--moon); font-weight: 700; }
 .btn[disabled] { opacity: .6; cursor: default; }
+.save-all { text-align: center; margin: 6px 0 16px; }
 
 .pages { margin: 20px 0; display: grid; gap: 6px; }
 .page {

@@ -20,6 +20,8 @@
       readBy: (n) => `Read by ${n}`, volunteerVoice: 'A volunteer',
       noAudio: 'Read it aloud together. A recording is coming soon.',
       save: 'Save for offline', saving: 'Saving…', savedOn: 'Saved on this phone', saveFail: 'Could not save. Try again on Wi-Fi.',
+      saveAll: 'Save all stories for offline', allSaved: 'All stories saved on this phone',
+      savingN: (i, n) => `Saving ${i} of ${n}…`,
       remove: 'Remove from phone',
       forGrownUps: 'For the grown-up', allStories: 'All stories', nextStory: 'Next story',
       share: 'Share', copied: 'Link copied',
@@ -73,6 +75,8 @@
       readBy: (n) => `بصوت ${n}`, volunteerVoice: 'بصوت متطوّع',
       noAudio: 'اقرؤوها معًا بصوت عالٍ. التسجيل الصوتي قادم قريبًا.',
       save: 'احفظها للاستماع دون إنترنت', saving: 'جارٍ الحفظ…', savedOn: 'محفوظة على هذا الهاتف',
+      saveAll: 'احفظ كل الحكايات للاستماع دون إنترنت', allSaved: 'كل الحكايات محفوظة على هذا الهاتف',
+      savingN: (i, n) => `جارٍ الحفظ… ${arNum(i)} من ${arNum(n)}`,
       saveFail: 'تعذّر الحفظ. حاولوا مرة أخرى عبر الواي فاي.', remove: 'احذفها من الهاتف',
       forGrownUps: 'للكبار', allStories: 'كل الحكايات', nextStory: 'الحكاية التالية',
       share: 'مشاركة', copied: 'تم نسخ الرابط',
@@ -126,6 +130,8 @@
       readBy: (n) => `Lo lee ${n}`, volunteerVoice: 'Lo lee un voluntario',
       noAudio: 'Léanlo juntos en voz alta. La grabación llegará pronto.',
       save: 'Guardar para usar sin internet', saving: 'Guardando…', savedOn: 'Guardado en este teléfono',
+      saveAll: 'Guardar todos los cuentos para usar sin internet', allSaved: 'Todos los cuentos guardados en este teléfono',
+      savingN: (i, n) => `Guardando ${i} de ${n}…`,
       saveFail: 'No se pudo guardar. Inténtalo de nuevo con wifi.', remove: 'Quitar del teléfono',
       forGrownUps: 'Para el adulto', allStories: 'Todos los cuentos', nextStory: 'Siguiente cuento',
       share: 'Compartir', copied: 'Enlace copiado',
@@ -265,6 +271,76 @@
     return true;
   }
 
+  /* ---------- Save all ---------- */
+
+  // One "Save all" at a time. It carries on if the family opens a story
+  // meanwhile, and skips stories that are already saved.
+  let saveAllJob = null;
+  const saveAllWatchers = new Set();
+
+  function runSaveAll(lang, items) {
+    const job = { lang, total: items.length, done: 0, saved: new Set(), failed: false, finished: false };
+    saveAllJob = job;
+    const tell = () => saveAllWatchers.forEach((fn) => fn(job));
+    (async () => {
+      try {
+        const cache = await caches.open(AUDIO_CACHE);
+        for (const x of items) {
+          if (!(await savedState(x.urls))) await cache.addAll(x.urls);
+          job.done += 1;
+          job.saved.add(x.id);
+          tell();
+        }
+        if (navigator.storage?.persist) navigator.storage.persist().catch(() => {});
+      } catch {
+        job.failed = true;
+      }
+      job.finished = true;
+      tell();
+    })();
+    return job;
+  }
+
+  function buildSaveAll(items, markSaved) {
+    if (!('caches' in window) || !items.length) return null;
+    const btn = el('button', { class: 'btn primary', type: 'button' }, t('saveAll'));
+    const busy = () => saveAllJob && !saveAllJob.finished;
+    const showIdle = async () => {
+      const states = await Promise.all(items.map((x) => savedState(x.urls)));
+      if (busy()) return;
+      const all = states.every(Boolean);
+      btn.textContent = all ? `✓ ${t('allSaved')}` : t('saveAll');
+      btn.disabled = all;
+    };
+    const watch = (job) => {
+      if (job.lang !== state.lang) {
+        btn.disabled = !job.finished;
+        btn.textContent = t('saving');
+        if (job.finished) showIdle();
+        return;
+      }
+      job.saved.forEach(markSaved);
+      if (!job.finished) {
+        btn.disabled = true;
+        btn.textContent = t('savingN')(Math.min(job.done + 1, job.total), job.total);
+      } else if (job.failed) {
+        btn.disabled = false;
+        btn.textContent = t('saveFail');
+      } else {
+        showIdle();
+      }
+    };
+    saveAllWatchers.add(watch);
+    state.cleanups.push(() => saveAllWatchers.delete(watch));
+    if (busy()) watch(saveAllJob);
+    else showIdle();
+    btn.addEventListener('click', () => {
+      if (busy()) return;
+      watch(runSaveAll(state.lang, items));
+    });
+    return el('div', { class: 'save-all' }, btn);
+  }
+
   /* ---------- Views ---------- */
 
   function renderLibrary() {
@@ -275,17 +351,26 @@
       el('ul', { class: 'pills' }, t('pills').map((p) => el('li', {}, p))));
     if (!stories.length) return [hero, el('p', { class: 'empty' }, t('empty'))];
     const grid = el('ul', { class: 'grid' });
+    const metaById = new Map();
+    const markSaved = (id) => {
+      const meta = metaById.get(id);
+      if (meta && !meta.querySelector('.tick')) meta.append(el('span', { class: 'tick' }, `✓ ${t('saved')}`));
+    };
+    const items = [];
     for (const s of stories) {
       const L = s.langs[state.lang];
       const meta = el('div', { class: 'meta' }, el('span', {}, t('min')(L.minutes)));
+      metaById.set(s.id, meta);
       grid.append(el('li', { class: 'card' },
         el('a', { href: `#/story/${s.id}` },
           el('img', { src: s.cover, alt: '', width: 400, height: 300, loading: 'lazy' }),
           el('div', { class: 'body' }, el('h2', {}, L.title), meta))));
       const urls = sourcesFor(L).map(pickUrl);
-      savedState(urls).then((ok) => { if (ok) meta.append(el('span', { class: 'tick' }, `✓ ${t('saved')}`)); });
+      if (urls.length) items.push({ id: s.id, urls });
+      savedState(urls).then((ok) => { if (ok) markSaved(s.id); });
     }
-    return [hero, grid];
+    const saveAll = buildSaveAll(items, markSaved);
+    return saveAll ? [hero, saveAll, grid] : [hero, grid];
   }
 
   function renderStory(id) {
