@@ -1,6 +1,7 @@
 // Offline support. The app shell and catalogue are kept automatically.
-// Story audio is kept only when the family taps "Save for offline", so we
-// never fill a phone without asking.
+// A story's audio is kept once it has played with signal, so it plays again
+// with no signal. "Save for offline" keeps a story without playing it first.
+// Only stories the family chose to play or save are ever kept.
 const BUILD = '__BUILD__';
 const SHELL = `shell-${BUILD}`;
 const DATA = 'data-v1';
@@ -58,26 +59,150 @@ async function cacheFirst(request, cacheName) {
   return res;
 }
 
-// Audio players ask for byte ranges. Serve them from the saved copy.
-async function savedAudio(request) {
-  const cache = await caches.open(AUDIO);
-  const hit = await cache.match(request.url);
-  if (!hit) return fetch(request);
-  const range = request.headers.get('range');
-  if (!range) return hit;
-  const buf = await hit.arrayBuffer();
-  const m = /bytes=(\d*)-(\d*)/.exec(range);
-  const start = m && m[1] ? Number(m[1]) : 0;
-  const end = m && m[2] ? Math.min(Number(m[2]), buf.byteLength - 1) : buf.byteLength - 1;
-  return new Response(buf.slice(start, end + 1), {
+// Audio players ask for byte ranges, a piece at a time. Once a story is kept,
+// every piece comes from the kept copy.
+//
+// The first time a story plays with signal, the worker downloads the whole
+// file once (what the player would download anyway, 0.2 to 0.7 MB) and hands
+// the player each piece as soon as its bytes arrive, so playback starts just as
+// fast. When the download finishes, the file is kept. No byte is downloaded
+// twice, which matters on a prepaid data bundle.
+
+// [start, end] for a Range header, or null to send the whole file.
+function parseRange(header, total) {
+  const m = header && /^bytes=(\d*)-(\d*)$/.exec(header.trim());
+  if (!m || (m[1] === '' && m[2] === '')) return null;
+  if (m[1] === '') return [Math.max(0, total - Number(m[2])), total - 1];
+  return [Number(m[1]), m[2] === '' ? total - 1 : Math.min(Number(m[2]), total - 1)];
+}
+
+function audioResponse(body, type, total, range) {
+  const headers = { 'content-type': type, 'accept-ranges': 'bytes' };
+  if (!range) return new Response(body, { status: 200, headers: { ...headers, 'content-length': String(total) } });
+  const [start, end] = range;
+  return new Response(body, {
     status: 206,
-    headers: {
-      'content-type': hit.headers.get('content-type') || 'audio/webm',
-      'content-range': `bytes ${start}-${end}/${buf.byteLength}`,
-      'content-length': String(end - start + 1),
-      'accept-ranges': 'bytes',
+    headers: { ...headers, 'content-range': `bytes ${start}-${end}/${total}`, 'content-length': String(end - start + 1) },
+  });
+}
+
+function outOfRange(total) {
+  return new Response(null, { status: 416, headers: { 'content-range': `bytes */${total}` } });
+}
+
+// One download per story file, shared by every request for it.
+const downloads = new Map();
+
+function download(url) {
+  const d = { buf: null, type: 'audio/webm', total: 0, received: 0, error: null, listeners: new Set() };
+  const notify = () => { for (const fn of [...d.listeners]) fn(); };
+  let gotHead;
+  d.head = new Promise((resolve, reject) => { gotHead = { resolve, reject }; });
+  d.head.catch(() => {});
+  d.done = (async () => {
+    const res = await fetch(url);
+    const total = Number(res.headers.get('content-length'));
+    // Anything unusual (an error, no length, a compressed body): don't keep it.
+    if (!res.ok || res.status !== 200 || !res.body || !(total > 0) || res.headers.get('content-encoding')) {
+      res.body?.cancel().catch(() => {});
+      throw new Error('cannot keep this file');
+    }
+    d.total = total;
+    d.type = res.headers.get('content-type') || 'audio/webm';
+    d.buf = new Uint8Array(total);
+    gotHead.resolve();
+    const reader = res.body.getReader();
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (d.received + value.byteLength > total) throw new Error('longer than expected');
+      d.buf.set(value, d.received);
+      d.received += value.byteLength;
+      notify();
+    }
+    if (d.received !== total) throw new Error('download cut short');
+    const cache = await caches.open(AUDIO);
+    await cache.put(url, audioResponse(d.buf, d.type, total, null));
+    // Let open pages show "Saved on this phone".
+    try {
+      for (const client of await self.clients.matchAll()) client.postMessage({ kept: url });
+    } catch { /* nothing to tell */ }
+  })();
+  d.done
+    .catch((err) => {
+      d.error = err;
+      gotHead.reject(err);
+      notify();
+    })
+    .finally(() => downloads.delete(url));
+  downloads.set(url, d);
+  return d;
+}
+
+// The bytes start..end of a download, handed over as they arrive.
+function streamFrom(d, start, end) {
+  let pos = start;
+  let waiting = null;
+  return new ReadableStream({
+    pull(controller) {
+      return new Promise((resolve) => {
+        const step = () => {
+          const last = Math.min(d.received - 1, end);
+          if (last >= pos) {
+            d.listeners.delete(step);
+            waiting = null;
+            controller.enqueue(d.buf.slice(pos, last + 1));
+            pos = last + 1;
+            if (pos > end) controller.close();
+            resolve();
+          } else if (d.error) {
+            d.listeners.delete(step);
+            waiting = null;
+            controller.error(d.error);
+            resolve();
+          } else {
+            waiting = step;
+            d.listeners.add(step);
+          }
+        };
+        step();
+      });
+    },
+    cancel() {
+      if (waiting) d.listeners.delete(waiting);
     },
   });
+}
+
+async function storyAudio(event) {
+  const { request } = event;
+  const url = request.url;
+  const header = request.headers.get('range');
+
+  const cache = await caches.open(AUDIO);
+  const hit = await cache.match(url);
+  if (hit) {
+    const buf = await hit.arrayBuffer();
+    const total = buf.byteLength;
+    const range = parseRange(header, total);
+    if (range && range[0] > range[1]) return outOfRange(total);
+    const type = hit.headers.get('content-type') || 'audio/webm';
+    return audioResponse(range ? buf.slice(range[0], range[1] + 1) : buf, type, total, range);
+  }
+
+  const d = downloads.get(url) || download(url);
+  // Keep the worker awake until the whole file is downloaded and kept.
+  event.waitUntil(d.done.catch(() => {}));
+  try {
+    await d.head;
+  } catch {
+    // No signal, or a file we can't keep: behave exactly as before.
+    return fetch(request);
+  }
+  const range = parseRange(header, d.total);
+  if (range && range[0] > range[1]) return outOfRange(d.total);
+  const [start, end] = range || [0, d.total - 1];
+  return audioResponse(streamFrom(d, start, end), d.type, d.total, range);
 }
 
 self.addEventListener('fetch', (event) => {
@@ -93,7 +218,7 @@ self.addEventListener('fetch', (event) => {
   } else if (url.pathname.startsWith('/media/covers/')) {
     event.respondWith(cacheFirst(request, DATA));
   } else if (url.pathname.startsWith('/media/')) {
-    event.respondWith(savedAudio(request));
+    event.respondWith(storyAudio(event));
   } else if (SHELL_FILES.includes(url.pathname) || url.pathname.startsWith('/icons/')) {
     event.respondWith(cacheFirst(request, SHELL));
   }

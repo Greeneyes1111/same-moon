@@ -4,7 +4,7 @@ Free bedtime stories, read aloud, for children who have had to leave home.
 
 Try it: https://samemoon.world
 
-Ten short, gentle stories in English, Arabic and Spanish about the things children far from home carry with them: missing people, a new language, a new room, new streets. Each one ends calmly, with a question for the grown-up to ask. There is a breathing exercise for hard nights, and families can save stories to play with no internet and no data.
+Ten short, gentle stories in English, Arabic and Spanish about the things children far from home carry with them: missing people, a new language, a new room, new streets. Each one ends calmly, with a question for the grown-up to ask. There is a breathing exercise for hard nights, and any story that has played once with signal plays again with no internet and no data (families can also save a story without playing it).
 
 No accounts, no adverts, no tracking. Every story and every voice recording is approved by a person before a child can hear it.
 
@@ -22,7 +22,7 @@ Built on Google Cloud Run for the Cloud Run Hackathon, "Build for Good", 20 Nove
 | `jobs/publish/` | Narrates drafts privately and publishes what was approved |
 | `shared/` | Code the services share: storage, stories, review status, audio, narration |
 | `infra/` | Container images and the one-step deploy script |
-| `tests/` | 29 tests |
+| `tests/` | 36 tests |
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
 

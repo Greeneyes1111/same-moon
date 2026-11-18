@@ -35,7 +35,7 @@ For a child who has had to leave home, bedtime can be the hardest part of the da
 
 It's built for the phones refugee families actually have:
 - The first visit is about 50 KB. After one visit with signal, it opens with none.
-- Tap "Save for offline" and a story plays with no data.
+- Play a story once with signal and it plays again with none, using no extra data. "Save for offline" keeps one without playing it.
 - No accounts, no adverts, no tracking.
 
 And nothing reaches a child unless a person has checked it. Every story and every voice recording is approved in a private review studio. Change one word and the story comes down until it's approved again. A word guard rejects any story that mentions war, soldiers or borders.

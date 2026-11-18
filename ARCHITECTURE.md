@@ -64,7 +64,7 @@ It runs when a reviewer approves something, and narration is only redone when th
 ## Built for a cheap phone
 
 - First visit: about **50 KB** over the network, including all ten stories' text in all three languages and the pictures. Covers are drawn in code, 1 to 3 KB each.
-- After one visit with signal, the library opens with **no signal**. Tapping "Save for offline" keeps a story's audio on the phone; it then plays with no data.
+- After one visit with signal, the library opens with **no signal**. A story that has played once with signal stays on the phone and plays again with no data. The offline worker downloads each story file once, hands the player each piece as it arrives, then keeps the file, so nothing is downloaded twice. "Save for offline" keeps a story without playing it first.
 - No framework. One script, one stylesheet.
 - Right-to-left layout, Arabic plurals and Eastern Arabic numerals for Arabic.
 

@@ -433,6 +433,13 @@
       btn.title = saved ? t('remove') : '';
     };
     savedState(urls).then(show);
+    // A story is also kept once it has played with signal; the offline worker
+    // says so when it finishes, and the button catches up.
+    const onKept = (e) => {
+      if (e.data?.kept && !btn.disabled) savedState(urls).then(show);
+    };
+    navigator.serviceWorker?.addEventListener('message', onKept);
+    state.cleanups.push(() => navigator.serviceWorker?.removeEventListener('message', onKept));
     btn.addEventListener('click', async () => {
       const cache = await caches.open(AUDIO_CACHE);
       if (btn.dataset.saved) {
