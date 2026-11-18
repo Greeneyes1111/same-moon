@@ -4,6 +4,11 @@ import { LANGS, env } from './config.js';
 import { fakeSpeech } from './audio.js';
 
 const TTS = 'https://texttospeech.googleapis.com/v1';
+
+// The voice chosen for a language, if any: TTS_VOICE_EN etc., else config.js.
+export function chosenVoice(lang) {
+  return env(`TTS_VOICE_${lang.toUpperCase()}`) || LANGS[lang]?.tts?.voice || null;
+}
 const TIERS = ['Chirp3-HD', 'Chirp-HD', 'Neural2', 'Studio', 'Wavenet', 'Standard'];
 
 class GoogleTts {
@@ -15,8 +20,10 @@ class GoogleTts {
   }
 
   async headers() {
-    const client = await (await this.authPromise).getClient();
-    const { token } = await client.getAccessToken();
+    // TTS_ACCESS_TOKEN lets a person run tools from their own computer:
+    //   TTS_ACCESS_TOKEN=$(gcloud auth print-access-token) GOOGLE_CLOUD_PROJECT=... node tools/voice-samples.js
+    let token = env('TTS_ACCESS_TOKEN');
+    if (!token) ({ token } = await (await (await this.authPromise).getClient()).getAccessToken());
     const h = { authorization: `Bearer ${token}`, 'content-type': 'application/json' };
     const project = env('GOOGLE_CLOUD_PROJECT');
     if (project) h['x-goog-user-project'] = project;
@@ -28,7 +35,7 @@ class GoogleTts {
   async voiceFor(lang) {
     if (this.voices[lang]) return this.voices[lang];
     const { languageCode } = LANGS[lang].tts;
-    const pinned = env(`TTS_VOICE_${lang.toUpperCase()}`);
+    const pinned = chosenVoice(lang);
     if (pinned) return (this.voices[lang] = { languageCode, name: pinned });
     const res = await fetch(`${TTS}/voices?languageCode=${languageCode}`, { headers: await this.headers() });
     if (!res.ok) throw new Error(`TTS voices ${res.status}: ${await res.text()}`);
@@ -42,8 +49,15 @@ class GoogleTts {
     return (this.voices[lang] = { languageCode, name: best.name });
   }
 
-  async synth(text, lang) {
-    const voice = await this.voiceFor(lang);
+  async listVoices(languageCode) {
+    const res = await fetch(`${TTS}/voices?languageCode=${languageCode}`, { headers: await this.headers() });
+    if (!res.ok) throw new Error(`TTS voices ${res.status}: ${await res.text()}`);
+    const { voices = [] } = await res.json();
+    return voices.filter((v) => v.languageCodes.includes(languageCode));
+  }
+
+  async synth(text, lang, { voiceName } = {}) {
+    const voice = voiceName ? { languageCode: LANGS[lang].tts.languageCode, name: voiceName } : await this.voiceFor(lang);
     const body = (withRate) => JSON.stringify({
       input: { text },
       voice,
@@ -65,8 +79,8 @@ class GoogleTts {
 }
 
 class FakeTts {
-  async synth(text) {
-    return { wav: await fakeSpeech(text), voice: 'test-tone' };
+  async synth(text, lang, { voiceName } = {}) {
+    return { wav: await fakeSpeech(text), voice: voiceName || chosenVoice(lang) || 'test-tone' };
   }
 }
 

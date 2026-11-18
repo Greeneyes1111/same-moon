@@ -70,3 +70,40 @@ test('a story with a frightening word stops the whole publish', async () => {
     await cleanup();
   }
 });
+
+test('choosing a new voice narrates that language again under new file names, and it stays approved', async () => {
+  const { store, cleanup } = await tempStore();
+  const s = two[0];
+  try {
+    for (const lang of ['en', 'ar']) await setStatus(store, s.id, lang, { state: 'approved', hash: textHash(s, lang), by: 'test' });
+    const before = (await publish({ store, tts: 'fake', stories: [s] })).catalogue.stories[0].langs;
+
+    process.env.TTS_VOICE_EN = 'en-GB-Test-Warm';
+    const after = (await publish({ store, tts: 'fake', stories: [s] })).catalogue.stories[0].langs;
+    assert.notEqual(after.en.audio.webm, before.en.audio.webm, 'English gets new file names');
+    assert.ok(await store.get('public', after.en.audio.webm.replace('/media/', '')), 'new English audio is public');
+    assert.equal(after.ar.audio.webm, before.ar.audio.webm, 'Arabic is untouched');
+    const manifest = JSON.parse((await store.get('state', `audio/${s.id}/en-${textHash(s, 'en')}.json`)).toString('utf8'));
+    assert.equal(manifest.voice, 'en-GB-Test-Warm');
+
+    const again = (await publish({ store, tts: 'fake', stories: [s] })).catalogue.stories[0].langs;
+    assert.equal(again.en.audio.webm, after.en.audio.webm, 'not narrated a third time');
+  } finally {
+    delete process.env.TTS_VOICE_EN;
+    await cleanup();
+  }
+});
+
+test('voice samples can be made without a Google account', async () => {
+  const { makeSamples } = await import('../tools/voice-samples.js');
+  const fsP = await import('node:fs/promises');
+  const os = await import('node:os');
+  const dir = await fsP.mkdtemp(`${os.tmpdir()}/samples-`);
+  try {
+    const out = await makeSamples({ tts: 'fake', names: ['en-GB-A', 'en-GB-B'], outDir: dir });
+    assert.deepEqual(out.map((o) => o.voice), ['en-GB-A', 'en-GB-B']);
+    for (const o of out) assert.ok((await fsP.stat(o.file)).size > 1000);
+  } finally {
+    await fsP.rm(dir, { recursive: true, force: true });
+  }
+});

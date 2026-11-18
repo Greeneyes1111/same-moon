@@ -22,7 +22,7 @@ Built on Google Cloud Run for the Cloud Run Hackathon, "Build for Good", 20 Nove
 | `jobs/publish/` | Narrates drafts privately and publishes what was approved |
 | `shared/` | Code the services share: storage, stories, review status, audio, narration |
 | `infra/` | Container images and the one-step deploy script |
-| `tests/` | 36 tests |
+| `tests/` | 38 tests |
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
 

@@ -7,13 +7,14 @@
 // 3. Catalogue: writes the catalogue the app reads.
 //
 // Flags: --tts=google|fake|none   --approve-all (local development only)
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { LANGS, isCloud } from '../../shared/config.js';
 import { makeStore } from '../../shared/store.js';
 import { loadStories, storyLangs, textHash, minutesFor, validateStory, COVERS_DIR } from '../../shared/stories.js';
 import { getStatus, setStatus, isApproved } from '../../shared/status.js';
-import { makeTts } from '../../shared/tts.js';
+import { makeTts, chosenVoice } from '../../shared/tts.js';
 import { renderStory } from '../../shared/audio.js';
 
 const IMMUTABLE = 'public, max-age=31536000, immutable';
@@ -28,11 +29,15 @@ function parseArgs(argv) {
   return args;
 }
 
+// Narration for this text. It is redone when the words change (new hash) or
+// when a different voice has been chosen for the language.
 async function ensureNarration(store, tts, story, lang, hash) {
   const base = `audio/${story.id}/${lang}-${hash}`;
   const existing = await store.get('state', `${base}.json`);
-  if (existing) return JSON.parse(existing.toString('utf8'));
-  if (!tts) return null;
+  const manifest0 = existing ? JSON.parse(existing.toString('utf8')) : null;
+  const wanted = chosenVoice(lang);
+  if (manifest0 && (!wanted || manifest0.voice === wanted)) return manifest0;
+  if (!tts) return manifest0;
   const t = story[lang];
   const segments = [];
   let voice = null;
@@ -47,6 +52,8 @@ async function ensureNarration(store, tts, story, lang, hash) {
   const manifest = {
     hash,
     voice,
+    // Names the public copy, so a re-narration never reuses a cached file name.
+    audioId: crypto.createHash('sha256').update(String(voice)).update(out.webm).update(out.m4a).digest('hex').slice(0, 8),
     duration: Math.round(out.duration * 10) / 10,
     pageStarts: out.pageStarts,
     bytes: { webm: out.webm.length, m4a: out.m4a.length },
@@ -110,10 +117,12 @@ export async function publish({ tts: ttsKind = 'none', approveAll = false, store
       let audio = null;
       if (narration) {
         const base = `audio/${story.id}/${lang}-${hash}`;
+        // Audio narrated before audioId existed keeps its old public name.
+        const pub = narration.audioId ? `${base}-${narration.audioId}` : base;
         audio = {
           kind: 'computer',
-          webm: await publishFile(store, `${base}.webm`, `${base}.webm`, 'audio/webm'),
-          m4a: await publishFile(store, `${base}.m4a`, `${base}.m4a`, 'audio/mp4'),
+          webm: await publishFile(store, `${base}.webm`, `${pub}.webm`, 'audio/webm'),
+          m4a: await publishFile(store, `${base}.m4a`, `${pub}.m4a`, 'audio/mp4'),
           duration: narration.duration,
           pageStarts: narration.pageStarts,
         };
