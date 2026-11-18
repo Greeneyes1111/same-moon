@@ -16,7 +16,7 @@ Gentle bedtime stories in English, Arabic and Spanish for refugee and displaced 
 Kids, Education, Charity & Giving
 
 ## Links
-- App: https://web-qdzmk3s3cq-ew.a.run.app
+- App: https://samemoon.world
 - Source and architecture: https://github.com/Greeneyes1111/same-moon
 
 ## Gallery (1270 x 760)
