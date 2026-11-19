@@ -16,7 +16,7 @@
       min: (n) => `${n} min`,
       saved: 'Saved',
       listen: 'Listen', pause: 'Pause', resume: 'Keep listening',
-      computerVoice: 'Computer voice', computerVoiceNote: 'Read by a computer voice',
+      computerVoice: 'Computer voice',
       readBy: (n) => `Read by ${n}`, volunteerVoice: 'A volunteer',
       noAudio: 'Read it aloud together. A recording is coming soon.',
       save: 'Save for offline', saving: 'Saving…', savedOn: 'Saved on this phone', saveFail: 'Could not save. Try again on Wi-Fi.',
@@ -44,7 +44,7 @@
           "To keep Same Moon on your phone like an app, open your browser menu and choose 'Add to Home screen'.",
         ]]],
         ['Privacy', ['No accounts, no adverts and no tracking. We do not collect anything about you or your child. Saved stories stay on your phone.']],
-        ['Safety', ['Every story, and every voice recording, is checked by a person before it appears here. The stories avoid frightening images. The computer voice is always labelled, so you know when a person is reading.']],
+        ['Safety', ['Every story, and every voice recording, is checked by a person before it appears here. The stories avoid frightening images.']],
         ['For teachers and organisations', ['Same Moon is free to use in classes, clubs and sessions, and free to share. The stories are not about any one country, so they work for children from anywhere.']],
         ['Lend your voice', ['Children often settle best to a voice that sounds like home. If you are 18 or over, you can record a story in your own language or accent.']],
       ],
@@ -71,7 +71,7 @@
       min: (n) => (n === 1 ? 'دقيقة واحدة' : n === 2 ? 'دقيقتان' : n <= 10 ? `${arNum(n)} دقائق` : `${arNum(n)} دقيقة`),
       saved: 'محفوظة',
       listen: 'استمع', pause: 'إيقاف مؤقت', resume: 'تابع الاستماع',
-      computerVoice: 'صوت حاسوبي', computerVoiceNote: 'يقرؤها صوت حاسوبي',
+      computerVoice: 'صوت حاسوبي',
       readBy: (n) => `بصوت ${n}`, volunteerVoice: 'بصوت متطوّع',
       noAudio: 'اقرؤوها معًا بصوت عالٍ. التسجيل الصوتي قادم قريبًا.',
       save: 'احفظها للاستماع دون إنترنت', saving: 'جارٍ الحفظ…', savedOn: 'محفوظة على هذا الهاتف',
@@ -99,7 +99,7 @@
           'لإبقاء «القمر نفسه» على هاتفكم مثل التطبيق، افتحوا قائمة المتصفّح واختاروا «إضافة إلى الشاشة الرئيسية».',
         ]]],
         ['الخصوصية', ['لا حسابات، ولا إعلانات، ولا تتبّع. نحن لا نجمع أي معلومات عنكم أو عن أطفالكم. والحكايات المحفوظة تبقى على هاتفكم.']],
-        ['الأمان', ['كل حكاية، وكل تسجيل صوتي، يراجعه شخص قبل أن يظهر هنا. والحكايات تتجنّب الصور المخيفة. والصوت الحاسوبي مُعلَن دائمًا، لتعرفوا متى يقرأ شخص حقيقي.']],
+        ['الأمان', ['كل حكاية، وكل تسجيل صوتي، يراجعه شخص قبل أن يظهر هنا. والحكايات تتجنّب الصور المخيفة.']],
         ['للمعلّمين والمنظّمات', ['«القمر نفسه» مجانية للاستخدام في الصفوف والأندية والجلسات، ومجانية للمشاركة. الحكايات ليست عن بلد بعينه، فهي تناسب الأطفال من أي مكان.']],
         ['أعِرنا صوتك', ['كثيرًا ما يهدأ الأطفال أكثر مع صوت يشبه صوت البيت. إذا كان عمرك ١٨ عامًا أو أكثر، يمكنك تسجيل حكاية بلغتك أو بلهجتك.']],
       ],
@@ -126,7 +126,7 @@
       min: (n) => `${n} min`,
       saved: 'Guardado',
       listen: 'Escuchar', pause: 'Pausa', resume: 'Seguir escuchando',
-      computerVoice: 'Voz de computadora', computerVoiceNote: 'Lo lee una voz de computadora',
+      computerVoice: 'Voz de computadora',
       readBy: (n) => `Lo lee ${n}`, volunteerVoice: 'Lo lee un voluntario',
       noAudio: 'Léanlo juntos en voz alta. La grabación llegará pronto.',
       save: 'Guardar para usar sin internet', saving: 'Guardando…', savedOn: 'Guardado en este teléfono',
@@ -154,7 +154,7 @@
           'Para tener La misma luna en tu teléfono como una aplicación, abre el menú del navegador y elige «Agregar a la pantalla de inicio».',
         ]]],
         ['Privacidad', ['Sin cuentas, sin anuncios y sin rastreo. No recopilamos nada sobre ti ni sobre tus hijos. Los cuentos guardados se quedan en tu teléfono.']],
-        ['Seguridad', ['Cada cuento, y cada grabación de voz, lo revisa una persona antes de aparecer aquí. Los cuentos evitan imágenes que den miedo. La voz de computadora siempre está indicada, para que sepas cuándo lee una persona.']],
+        ['Seguridad', ['Cada cuento, y cada grabación de voz, lo revisa una persona antes de aparecer aquí. Los cuentos evitan imágenes que den miedo.']],
         ['Para maestros y organizaciones', ['La misma luna es gratis para usar en clases, clubes y sesiones, y gratis para compartir. Los cuentos no tratan de ningún país en particular, así que sirven para niños de cualquier lugar.']],
         ['Presta tu voz', ['Muchas veces los niños se calman mejor con una voz que suena a casa. Si tienes 18 años o más, puedes grabar un cuento en tu propio idioma o acento.']],
       ],
@@ -427,7 +427,7 @@
     const btn = el('button', { class: 'play', type: 'button', 'aria-label': t('listen') });
     btn.innerHTML = ICONS.play;
     const label = el('div', { class: 'play-label' }, t('listen'));
-    const sub = el('div', { class: 'play-sub' }, current.kind === 'computer' ? t('computerVoiceNote') : current.label);
+    const sub = el('div', { class: 'play-sub' }, current.kind === 'computer' ? '' : current.label);
     const seek = el('input', { class: 'seek', type: 'range', min: 0, max: 1000, value: 0, 'aria-label': 'Position' });
     const tNow = el('span', {}, '0:00');
     const tAll = el('span', {}, fmtTime(current.duration));
@@ -448,7 +448,7 @@
     const load = (src) => {
       current = src;
       audio.src = pickUrl(src);
-      sub.textContent = src.kind === 'computer' ? t('computerVoiceNote') : src.label;
+      sub.textContent = src.kind === 'computer' ? '' : src.label;
       tAll.textContent = fmtTime(src.duration);
       seek.value = 0;
       highlight(-1);
