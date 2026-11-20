@@ -34,3 +34,15 @@ finishes: listen to a story or two in the review studio straight after (it shows
 the voice name under each player). New file names mean phones never play an old
 cached copy; stories a family saved before the change keep the old voice until
 they save again.
+
+## Gemini voices (English since 20 Nov 2026)
+
+A voice written `model:Name` in `shared/config.js` (for example
+`gemini-2.5-pro-tts:Callirrhoe`) is one of Google's Gemini voices. It reads in the
+style given by `prompt` (English: a soft, warm British bedtime voice) and ignores
+`speakingRate`. Because the accent comes from the prompt, `check` makes the
+publish job send every narrated page to Gemini (`LISTEN_MODEL`, default
+`gemini-3.5-flash`) to confirm the accent and that the words are exactly the
+approved text; a page that fails is re-recorded, up to 4 tries, and the best take
+is kept with a `narration-check-failed` log line. Each story's manifest records
+how many pages passed and how many retakes were needed.

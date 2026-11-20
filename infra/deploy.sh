@@ -31,7 +31,7 @@ NUM=$(g projects describe "$PROJECT" --format='value(projectNumber)')
 
 say "Turning on the Google Cloud APIs"
 g services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com \
-  texttospeech.googleapis.com eventarc.googleapis.com pubsub.googleapis.com storage.googleapis.com \
+  texttospeech.googleapis.com aiplatform.googleapis.com eventarc.googleapis.com pubsub.googleapis.com storage.googleapis.com \
   iamcredentials.googleapis.com secretmanager.googleapis.com logging.googleapis.com
 
 say "Image repository"
@@ -70,6 +70,9 @@ g iam service-accounts add-iam-policy-binding "$(sa sm-web)" \
   --member "serviceAccount:$(sa sm-web)" --role roles/iam.serviceAccountTokenCreator >/dev/null
 try g projects add-iam-policy-binding "$PROJECT" --member "serviceAccount:$(sa sm-media)" \
   --role roles/serviceusage.serviceUsageConsumer --condition None >/dev/null
+# Gemini voices, and Gemini listening to each narrated page before it is used.
+try g projects add-iam-policy-binding "$PROJECT" --member "serviceAccount:$(sa sm-media)" \
+  --role roles/aiplatform.user --condition None >/dev/null
 try g projects add-iam-policy-binding "$PROJECT" --member "serviceAccount:$(sa sm-events)" \
   --role roles/eventarc.eventReceiver --condition None >/dev/null
 # Asking the Storage API for its service agent is what creates it on a new project.
@@ -97,7 +100,7 @@ ENVS="STORE=gcs,BUCKET_PUBLIC=$PUBLIC,BUCKET_STATE=$STATE,BUCKET_UPLOADS=$UPLOAD
 say "Publish job"
 g run jobs deploy publish --region "$REGION" --image "$REPO/media:$TAG" \
   --service-account "$(sa sm-media)" --command node --args "jobs/publish/run.js,--tts=google" \
-  --set-env-vars "$ENVS" --cpu 1 --memory 1Gi --task-timeout 30m --max-retries 1
+  --set-env-vars "$ENVS" --cpu 1 --memory 1Gi --task-timeout 90m --max-retries 1
 g run jobs add-iam-policy-binding publish --region "$REGION" \
   --member "serviceAccount:$(sa sm-studio)" --role roles/run.invoker >/dev/null
 

@@ -31,6 +31,8 @@ function parseArgs(argv) {
 
 // Narration for this text. It is redone when the words change (new hash) or
 // when a different voice has been chosen for the language.
+const NARRATE_AT_ONCE = 4;
+
 async function ensureNarration(store, tts, story, lang, hash) {
   const base = `audio/${story.id}/${lang}-${hash}`;
   const existing = await store.get('state', `${base}.json`);
@@ -39,13 +41,19 @@ async function ensureNarration(store, tts, story, lang, hash) {
   if (manifest0 && (!wanted || manifest0.voice === wanted)) return manifest0;
   if (!tts) return manifest0;
   const t = story[lang];
-  const segments = [];
-  let voice = null;
-  for (const text of [t.title, ...t.pages]) {
-    const r = await tts.synth(text, lang);
-    segments.push(r.wav);
-    voice = r.voice;
-  }
+  // Pages are narrated a few at a time (Gemini voices are slow), kept in order.
+  const texts = [t.title, ...t.pages];
+  const results = new Array(texts.length);
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.min(NARRATE_AT_ONCE, texts.length) }, async () => {
+    while (next < texts.length) {
+      const i = next++;
+      results[i] = await tts.synth(texts[i], lang);
+    }
+  }));
+  const segments = results.map((r) => r.wav);
+  const voice = results[0].voice;
+  const checks = results.filter((r) => r.check);
   const out = await renderStory(segments);
   await store.put('state', `${base}.webm`, out.webm, { contentType: 'audio/webm' });
   await store.put('state', `${base}.m4a`, out.m4a, { contentType: 'audio/mp4' });
@@ -56,11 +64,12 @@ async function ensureNarration(store, tts, story, lang, hash) {
     audioId: crypto.createHash('sha256').update(String(voice)).update(out.webm).update(out.m4a).digest('hex').slice(0, 8),
     duration: Math.round(out.duration * 10) / 10,
     pageStarts: out.pageStarts,
+    ...(checks.length ? { checks: { pages: checks.length, passed: checks.filter((r) => r.check.ok).length, retakes: checks.reduce((n, r) => n + r.check.attempt - 1, 0) } } : {}),
     bytes: { webm: out.webm.length, m4a: out.m4a.length },
     createdAt: new Date().toISOString(),
   };
   await store.put('state', `${base}.json`, Buffer.from(JSON.stringify(manifest, null, 2)), { contentType: 'application/json' });
-  log('narrated', { story: story.id, lang, voice, seconds: manifest.duration, kb: Math.round(out.webm.length / 1024) });
+  log('narrated', { story: story.id, lang, voice, seconds: manifest.duration, kb: Math.round(out.webm.length / 1024), checks: manifest.checks });
   return manifest;
 }
 
