@@ -38,6 +38,18 @@ test('Arabic minutes use the right plural forms', () => {
 
 test('no third-party scripts, fonts or trackers in the page', () => {
   const html = fs.readFileSync(new URL('../services/web/public/index.html', import.meta.url), 'utf8');
-  assert.ok(!/https?:\/\//.test(html.replace(/xmlns="[^"]+"/g, '')), 'index.html should load nothing from other sites');
+  // Link-preview tags must use full addresses on our own domain; the page itself never loads them.
+  const shareTags = /<meta (?:property="og:[a-z:_]+"|name="twitter:[a-z:_]+") content="https:\/\/samemoon\.world\/[^"]*">/g;
+  assert.ok(!/https?:\/\//.test(html.replace(/xmlns="[^"]+"/g, '').replace(shareTags, '')), 'index.html should load nothing from other sites');
   assert.ok(!/google-analytics|gtag|facebook|hotjar/i.test(src));
+});
+
+test('link previews have a picture that exists', () => {
+  const html = fs.readFileSync(new URL('../services/web/public/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<meta property="og:image" content="https:\/\/samemoon\.world\/icons\/og\.png">/);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  const png = fs.readFileSync(new URL('../services/web/public/icons/og.png', import.meta.url));
+  assert.equal(png.readUInt32BE(16), 1200, 'og.png is 1200 wide');
+  assert.equal(png.readUInt32BE(20), 630, 'og.png is 630 high');
+  assert.ok(png.length < 600 * 1024, 'og.png stays small enough for WhatsApp');
 });
