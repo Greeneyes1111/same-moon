@@ -43,7 +43,7 @@
           "When you have Wi-Fi, open a story and tap 'Save for offline'. It will then play with no internet and no data.",
           "To keep Same Moon on your phone like an app, open your browser menu and choose 'Add to Home screen'.",
         ]]],
-        ['Privacy', ['No accounts, no adverts and no tracking. We do not collect anything about you or your child. Saved stories stay on your phone.']],
+        ['Privacy', ['No accounts, no adverts and no tracking. We do not collect anything about you or your child. We only count totals, such as how many times each story is played, so we can see that Same Moon is helping. Saved stories stay on your phone.']],
         ['Safety', ['Every story, and every voice recording, is checked by a person before it appears here. The stories avoid frightening images.']],
         ['For teachers and organisations', ['Same Moon is free to use in classes, clubs and sessions, and free to share. The stories are not about any one country, so they work for children from anywhere.']],
         ['Lend your voice', ['Children often settle best to a voice that sounds like home. If you are 18 or over, you can record a story in your own language or accent.']],
@@ -98,7 +98,7 @@
           'حين يتوفّر الواي فاي، افتحوا الحكاية واضغطوا «احفظها للاستماع دون إنترنت». بعد ذلك ستعمل دون إنترنت ودون استهلاك بيانات.',
           'لإبقاء «القمر نفسه» على هاتفكم مثل التطبيق، افتحوا قائمة المتصفّح واختاروا «إضافة إلى الشاشة الرئيسية».',
         ]]],
-        ['الخصوصية', ['لا حسابات، ولا إعلانات، ولا تتبّع. نحن لا نجمع أي معلومات عنكم أو عن أطفالكم. والحكايات المحفوظة تبقى على هاتفكم.']],
+        ['الخصوصية', ['لا حسابات، ولا إعلانات، ولا تتبّع. نحن لا نجمع أي معلومات عنكم أو عن أطفالكم. نكتفي بإحصاء الأعداد الإجمالية، مثل عدد مرات الاستماع إلى كل حكاية، لنعرف إن كانت «القمر نفسه» مفيدة. والحكايات المحفوظة تبقى على هاتفكم.']],
         ['الأمان', ['كل حكاية، وكل تسجيل صوتي، يراجعه شخص قبل أن يظهر هنا. والحكايات تتجنّب الصور المخيفة.']],
         ['للمعلّمين والمنظّمات', ['«القمر نفسه» مجانية للاستخدام في الصفوف والأندية والجلسات، ومجانية للمشاركة. الحكايات ليست عن بلد بعينه، فهي تناسب الأطفال من أي مكان.']],
         ['أعِرنا صوتك', ['كثيرًا ما يهدأ الأطفال أكثر مع صوت يشبه صوت البيت. إذا كان عمرك ١٨ عامًا أو أكثر، يمكنك تسجيل حكاية بلغتك أو بلهجتك.']],
@@ -153,7 +153,7 @@
           'Cuando tengas wifi, abre un cuento y toca «Guardar para usar sin internet». Después se podrá escuchar sin internet y sin gastar datos.',
           'Para tener La misma luna en tu teléfono como una aplicación, abre el menú del navegador y elige «Agregar a la pantalla de inicio».',
         ]]],
-        ['Privacidad', ['Sin cuentas, sin anuncios y sin rastreo. No recopilamos nada sobre ti ni sobre tus hijos. Los cuentos guardados se quedan en tu teléfono.']],
+        ['Privacidad', ['Sin cuentas, sin anuncios y sin rastreo. No recopilamos nada sobre ti ni sobre tus hijos. Solo contamos totales, como cuántas veces se escucha cada cuento, para saber si La misma luna está ayudando. Los cuentos guardados se quedan en tu teléfono.']],
         ['Seguridad', ['Cada cuento, y cada grabación de voz, lo revisa una persona antes de aparecer aquí. Los cuentos evitan imágenes que den miedo.']],
         ['Para maestros y organizaciones', ['La misma luna es gratis para usar en clases, clubes y sesiones, y gratis para compartir. Los cuentos no tratan de ningún país en particular, así que sirven para niños de cualquier lugar.']],
         ['Presta tu voz', ['Muchas veces los niños se calman mejor con una voz que suena a casa. Si tienes 18 años o más, puedes grabar un cuento en tu propio idioma o acento.']],
@@ -256,6 +256,18 @@
     state.catalogue = await res.json();
   }
 
+  // Anonymous totals: that a story started playing or was saved, and in which
+  // language. Nothing about the phone or the person is sent, and nothing at
+  // all while offline.
+  function count(e, story, lang) {
+    if (!navigator.onLine) return;
+    const body = JSON.stringify(story ? { e, story, lang } : { e });
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon('/api/count', body)) return;
+    } catch { /* fall back to fetch */ }
+    fetch('/api/count', { method: 'POST', body, keepalive: true }).catch(() => {});
+  }
+
   const storiesInLang = () => (state.catalogue?.stories || []).filter((s) => s.langs[state.lang]);
 
   function sourcesFor(L) {
@@ -292,6 +304,7 @@
           tell();
         }
         if (navigator.storage?.persist) navigator.storage.persist().catch(() => {});
+        count('saveAll');
       } catch {
         job.failed = true;
       }
@@ -397,7 +410,7 @@
     parts.push(el('aside', { class: 'grown' }, el('h2', {}, t('forGrownUps')), el('p', {}, L.grownUp)));
 
     const actions = el('div', { class: 'btn-row' });
-    if ('caches' in window && sources.length) actions.append(buildSaveButton(sources.map(pickUrl)));
+    if ('caches' in window && sources.length) actions.append(buildSaveButton(sources.map(pickUrl), s.id));
     const shareBtn = el('button', { class: 'btn', type: 'button' }, t('share'));
     shareBtn.addEventListener('click', async () => {
       const data = { title: L.title, url: location.href };
@@ -423,6 +436,7 @@
     audio.preload = 'none';
     let current = sources[0];
     let lastPage = -1;
+    let counted = false;
 
     const btn = el('button', { class: 'play', type: 'button', 'aria-label': t('listen') });
     btn.innerHTML = ICONS.play;
@@ -462,6 +476,7 @@
     });
     audio.addEventListener('play', () => {
       setPlaying(true);
+      if (!counted) { counted = true; count('play', story.id, state.lang); }
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: L.title,
@@ -509,7 +524,7 @@
     return box;
   }
 
-  function buildSaveButton(urls) {
+  function buildSaveButton(urls, storyId) {
     const btn = el('button', { class: 'btn primary', type: 'button' }, t('save'));
     const show = (saved) => {
       btn.textContent = saved ? `✓ ${t('savedOn')}` : t('save');
@@ -539,6 +554,7 @@
         await cache.addAll(urls);
         if (navigator.storage?.persist) navigator.storage.persist().catch(() => {});
         show(true);
+        count('save', storyId, state.lang);
       } catch {
         btn.textContent = t('saveFail');
         btn.disabled = false;

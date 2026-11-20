@@ -10,6 +10,7 @@ import { makeStore, contentTypeFor } from '../../shared/store.js';
 import { isCloud } from '../../shared/config.js';
 import { loadStories, storyLangs } from '../../shared/stories.js';
 import { processUpload } from '../transcoder/server.js';
+import { Counter } from '../../shared/counter.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(here, 'public');
@@ -99,6 +100,9 @@ class RateLimit {
     if (recent.length >= this.limit) return false;
     recent.push(now);
     this.hits.set(key, recent);
+    if (this.hits.size > 20_000) {
+      for (const [k, times] of this.hits) if (now - times[times.length - 1] >= this.windowMs) this.hits.delete(k);
+    }
     return true;
   }
 }
@@ -162,10 +166,13 @@ function readBody(req, limit) {
 const AUDIO_TYPES = ['audio/webm', 'audio/ogg', 'audio/mp4', 'audio/mpeg', 'audio/wav', 'audio/x-wav', 'audio/x-m4a', 'audio/aac'];
 const clean = (s, max) => String(s || '').replace(/[<>\u0000-\u001f]/g, '').trim().slice(0, max);
 
-export function createServer({ store = makeStore(), stories = loadStories() } = {}) {
+export function createServer({ store = makeStore(), stories = loadStories(), counter = new Counter(store) } = {}) {
   const statics = loadStatic();
   const media = new MediaCache();
   const limiter = new RateLimit();
+  // Caps how much one connection can add to the totals.
+  const countLimiter = new RateLimit(300, 60 * 60 * 1000);
+  const clientIp = (req) => (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
   let catalogueCache = { at: 0, body: null };
 
   async function catalogue() {
@@ -188,6 +195,11 @@ export function createServer({ store = makeStore(), stories = loadStories() } = 
     }
 
     if (req.method === 'GET' && p === '/api/catalogue') {
+      // The app asks for the story list once each time it opens with signal.
+      // The offline helper also asks, when it is set up on a phone (?first=1)
+      // or updated (?sw=1).
+      if (url.searchParams.get('first') === '1') counter.add('newPhone');
+      else if (!url.searchParams.has('sw')) counter.add('open');
       const buf = await catalogue();
       if (!buf) return json(res, 503, { error: 'The library is being prepared. Try again in a minute.' });
       return sendBuffer(req, res, buf, { type: 'application/json', cacheControl: 'no-cache' });
@@ -206,10 +218,32 @@ export function createServer({ store = makeStore(), stories = loadStories() } = 
       return sendBuffer(req, res, buf, { type: contentTypeFor(key), cacheControl });
     }
 
+    // Anonymous totals: a story started playing, or was saved for offline.
+    // The body names only the event, the story and the language.
+    if (req.method === 'POST' && p === '/api/count') {
+      let body;
+      try {
+        body = JSON.parse((await readBody(req, 512)).toString('utf8'));
+      } catch {
+        return send(res, 400, null);
+      }
+      const event = body?.e;
+      if (event === 'saveAll') {
+        if (countLimiter.allow(clientIp(req))) counter.add('saveAll');
+        return send(res, 204, null);
+      }
+      if (event === 'play' || event === 'save') {
+        const story = stories.find((s) => s.id === body.story);
+        if (!story || !storyLangs(story).includes(body.lang)) return send(res, 400, null);
+        if (countLimiter.allow(clientIp(req))) counter.add(event, story.id, body.lang);
+        return send(res, 204, null);
+      }
+      return send(res, 400, null);
+    }
+
     // A volunteer asks where to send a recording. Only the reviewers ever hear it.
     if (req.method === 'POST' && p === '/api/voices') {
-      const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
-      if (!limiter.allow(ip)) return json(res, 429, { error: 'Too many recordings from here today. Thank you, and please try again later.' });
+      if (!limiter.allow(clientIp(req))) return json(res, 429, { error: 'Too many recordings from here today. Thank you, and please try again later.' });
       let body;
       try {
         body = JSON.parse((await readBody(req, 8 * 1024)).toString('utf8'));
@@ -251,16 +285,25 @@ export function createServer({ store = makeStore(), stories = loadStories() } = 
     return send(res, 404, 'Not found', { 'content-type': 'text/plain' });
   }
 
-  return http.createServer((req, res) => {
+  const server = http.createServer((req, res) => {
     handle(req, res).catch((err) => {
       log('ERROR', 'request failed', { path: req.url.split('?')[0], error: err.message });
       if (!res.headersSent) json(res, err.status || 500, { error: 'Something went wrong' });
     });
   });
+  server.counter = counter;
+  server.on('close', () => { counter.close().catch(() => {}); });
+  return server;
 }
 
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
 if (isMain) {
   const port = Number(process.env.PORT || 8080);
-  createServer().listen(port, () => log('INFO', `web listening on ${port}`));
+  const server = createServer();
+  server.listen(port, () => log('INFO', `web listening on ${port}`));
+  // Cloud Run sends SIGTERM before it stops an instance: save the counts first.
+  process.on('SIGTERM', () => {
+    server.counter.close().catch(() => {}).finally(() => process.exit(0));
+    setTimeout(() => process.exit(0), 8000).unref();
+  });
 }

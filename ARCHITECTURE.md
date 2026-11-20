@@ -57,7 +57,8 @@ It runs when a reviewer approves something, and narration is only redone when th
 ## Built for privacy
 
 - No accounts, cookies, analytics or third-party scripts. The content security policy allows nothing from other sites.
-- The only rate limit (on recording uploads) hashes the address with a salt that lives in memory and changes on every restart. Nothing is logged.
+- Rate limits (on recording uploads and on counts) hash the address with a salt that lives in memory and changes on every restart. Nothing is logged.
+- Same Moon counts things that happen, never people: app opens with signal, phones setting it up for the first time, story plays and saves for offline, per story and language. No address, cookie or phone ID is sent or kept, and nothing is counted offline. Each web instance writes its totals every few minutes as a new small file in the private bucket (`stats/<UTC day>/`), which it can create but never read or change; the studio's Numbers page adds them up and folds finished days into one file (`shared/counter.js`). Counts from before the counter existed come from Google's own request log (`tools/log_counts.py`). The Grown-ups page says so in all three languages.
 - Raw uploads are deleted after processing, and the bucket deletes anything left after two days.
 - Each service runs as its own service account with only the access it needs: the public web service cannot read the private bucket.
 

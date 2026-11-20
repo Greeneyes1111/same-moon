@@ -11,6 +11,7 @@ import { makeStore, contentTypeFor } from '../../shared/store.js';
 import { loadStories, storyLangs, textHash, guardHits, minutesFor } from '../../shared/stories.js';
 import { getStatus, setStatus, isApproved } from '../../shared/status.js';
 import { triggerPublish } from '../../shared/jobs.js';
+import { readTotals } from '../../shared/counter.js';
 
 const log = (severity, message, extra = {}) => console.log(JSON.stringify({ severity, message, ...extra }));
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -40,7 +41,7 @@ audio{width:100%;margin:8px 0}
 function page(title, body, user, flash) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex"><title>${esc(title)} · Same Moon studio</title><style>${CSS}</style></head><body>
-<header><strong>Same Moon studio</strong><a href="/">Stories</a><a href="/voices">Volunteer voices</a><span class="muted" style="color:#b8bde3;margin-inline-start:auto">${esc(user)}</span></header>
+<header><strong>Same Moon studio</strong><a href="/">Stories</a><a href="/voices">Volunteer voices</a><a href="/stats">Numbers</a><span class="muted" style="color:#b8bde3;margin-inline-start:auto">${esc(user)}</span></header>
 <main>${flash ? `<div class="flash">${esc(flash)}</div>` : ''}${body}</main></body></html>`;
 }
 
@@ -188,6 +189,56 @@ ${hits.length ? `<p class="warn">Words to check: ${esc(hits.join(', '))}</p>` : 
     return page('Volunteer voices', body, user, flash);
   }
 
+  async function statsPage(user) {
+    const days = await readTotals(store, { days: 14 });
+    const sumPer = (obj) => Object.values(obj).reduce((a, n) => a + n, 0);
+    const n = (x) => Number(x || 0).toLocaleString('en-GB');
+    const fmtDay = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+    const total = (list) => list.reduce((a, d) => ({
+      open: a.open + d.open, newPhone: a.newPhone + d.newPhone, play: a.play + sumPer(d.play),
+      save: a.save + sumPer(d.save), saveAll: a.saveAll + d.saveAll,
+    }), { open: 0, newPhone: 0, play: 0, save: 0, saveAll: 0 });
+    const week = total(days.slice(0, 7));
+    const all = total(days);
+
+    let rows = '';
+    for (const d of days) {
+      const note = d.fromLog ? `<div class="muted">From Google's request log, before the counter started: app opens are approximate; ${n(d.audioDownloads)} story files downloaded.</div>` : '';
+      rows += `<tr><td>${esc(fmtDay(d.day))}${note}</td><td>${n(d.open)}</td><td>${n(d.newPhone)}</td><td>${n(sumPer(d.play))}</td><td>${n(sumPer(d.save))}</td><td>${n(d.saveAll)}</td></tr>`;
+    }
+
+    const langs = Object.keys(LANGS);
+    const byStory = {};
+    for (const d of days) {
+      for (const kind of ['play', 'save']) {
+        for (const [key, count] of Object.entries(d[kind])) {
+          const [id, lang] = key.split('|');
+          byStory[id] ||= {};
+          byStory[id][lang] ||= { play: 0, save: 0 };
+          byStory[id][lang][kind] += count;
+        }
+      }
+    }
+    let storyRows = '';
+    for (const s of stories) {
+      const cells = langs.map((l) => {
+        const c = byStory[s.id]?.[l];
+        return `<td>${c ? `${n(c.play)} plays${c.save ? ` · ${n(c.save)} saved` : ''}` : '<span class="muted">0</span>'}</td>`;
+      }).join('');
+      storyRows += `<tr><td>${esc(s.en?.title || s.id)}</td>${cells}</tr>`;
+    }
+
+    const body = `
+<h1>Numbers</h1>
+<div class="card row"><div><strong>Last 7 days:</strong> ${n(week.open)} app opens · ${n(week.newPhone)} new phones · ${n(week.play)} story plays · ${n(week.save + week.saveAll)} saves for offline</div></div>
+<p class="muted">Counts of things that happened, never of people: no addresses, cookies or phone IDs are kept. Nothing is counted while a phone is offline, so real use is higher, especially plays. A "new phone" is the first time Same Moon is set up on a phone. Days run midnight to midnight UTC (04:00 to 04:00 in Dubai). Counts reach this page within about 5 minutes.</p>
+<table><thead><tr><th>Day</th><th>App opens</th><th>New phones</th><th>Story plays</th><th>Stories saved</th><th>"Save all" used</th></tr></thead><tbody>${rows}</tbody>
+<tfoot><tr><th>14 days</th><th>${n(all.open)}</th><th>${n(all.newPhone)}</th><th>${n(all.play)}</th><th>${n(all.save)}</th><th>${n(all.saveAll)}</th></tr></tfoot></table>
+<h2>By story, last 14 days</h2>
+<table><thead><tr><th>Story</th>${langs.map((l) => `<th>${esc(LANGS[l].name)}</th>`).join('')}</tr></thead><tbody>${storyRows}</tbody></table>`;
+    return page('Numbers', body, user);
+  }
+
   async function moveVoice(key, approve) {
     if (!/^voices\/review\/[a-z0-9-]+\/[a-z]{2}\/[0-9a-f-]{36}\.json$/.test(key)) throw new Error('bad key');
     const base = key.slice(0, -5);
@@ -252,6 +303,7 @@ ${hits.length ? `<p class="warn">Words to check: ${esc(hits.join(', '))}</p>` : 
     if (req.method === 'GET' && p === '/healthz') { res.writeHead(200); return res.end('ok'); }
     if (req.method === 'GET' && p === '/') return html(await dashboard(user, flash));
     if (req.method === 'GET' && p === '/voices') return html(await voicesPage(user, flash));
+    if (req.method === 'GET' && p === '/stats') return html(await statsPage(user));
 
     let m;
     if (req.method === 'GET' && (m = /^\/story\/([a-z0-9-]+)\/([a-z]{2})$/.exec(p))) {

@@ -87,6 +87,7 @@ function loadWorker(caches, net) {
     return { reply, settled: () => Promise.all(waits) };
   }
   ask.messages = messages;
+  ask.listeners = listeners;
   return ask;
 }
 
@@ -200,4 +201,19 @@ test('a range past the end of a kept story gets 416', async () => {
   const r = await ask(URL_A, 'bytes=5000-').reply;
   assert.equal(r.status, 416);
   assert.equal(r.headers.get('content-range'), 'bytes */1000');
+});
+
+test('setting up on a phone tells the server only whether it is the first time', async () => {
+  for (const [hadShell, want] of [[false, '/api/catalogue?first=1'], [true, '/api/catalogue?sw=1']]) {
+    const caches = fakeCaches();
+    caches.keys = async () => [...caches.stores.keys()];
+    if (hadShell) await caches.open('shell-older');
+    const net = fakeNetwork(new Uint8Array(10));
+    const ask = loadWorker(caches, net);
+    const waits = [];
+    ask.listeners.install({ waitUntil: (p) => waits.push(p) });
+    await Promise.all(waits);
+    const asked = net.calls.map((c) => c.url).filter((u) => u.includes('/api/catalogue'));
+    assert.deepEqual(asked, [ORIGIN + want]);
+  }
 });

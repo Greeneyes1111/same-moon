@@ -11,9 +11,12 @@ const SHELL_FILES = ['/', '/app.js', '/styles.css', '/manifest.webmanifest', '/i
 // The first visit happens before this worker is in charge, so on install we
 // also keep the story list and the cover pictures (about 30 KB together).
 // After one visit with signal, the library opens with none.
-async function keepLibrary() {
+// It also tells the server whether this is a phone setting Same Moon up for
+// the first time, so the anonymous totals can count new phones. Nothing about
+// the phone is sent.
+async function keepLibrary(firstTime) {
   const data = await caches.open(DATA);
-  const res = await fetch('/api/catalogue', { cache: 'no-cache' });
+  const res = await fetch(firstTime ? '/api/catalogue?first=1' : '/api/catalogue?sw=1', { cache: 'no-cache' });
   if (!res.ok) return;
   await data.put('/api/catalogue', res.clone());
   const { stories = [] } = await res.json();
@@ -21,12 +24,14 @@ async function keepLibrary() {
 }
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(SHELL)
-      .then((c) => c.addAll(SHELL_FILES))
-      .then(() => keepLibrary().catch(() => {}))
-      .then(() => self.skipWaiting()),
-  );
+  event.waitUntil((async () => {
+    // A phone that has never had Same Moon has no app shell kept yet.
+    const firstTime = !(await caches.keys()).some((k) => k.startsWith('shell-'));
+    const shell = await caches.open(SHELL);
+    await shell.addAll(SHELL_FILES);
+    await keepLibrary(firstTime).catch(() => {});
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {
