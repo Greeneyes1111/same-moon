@@ -13,6 +13,7 @@
       heroTitle: 'Bedtime stories for children far from home',
       heroText: 'Short, gentle stories about missing people, new languages, new rooms and new streets. Read together, or press play.',
       pills: ['Free', 'No sign-up', 'Works offline', 'No tracking'],
+      award: 'Winner',
       min: (n) => `${n} min`,
       saved: 'Saved',
       listen: 'Listen', pause: 'Pause', resume: 'Keep listening',
@@ -68,6 +69,7 @@
       heroTitle: 'حكايات قبل النوم للأطفال البعيدين عن بيوتهم',
       heroText: 'حكايات قصيرة ولطيفة عن الاشتياق، واللغة الجديدة، والغرفة الجديدة، والشوارع الجديدة. اقرؤوها معًا، أو اضغطوا للاستماع.',
       pills: ['مجانية', 'دون تسجيل', 'تعمل دون إنترنت', 'دون تتبّع'],
+      award: 'الفائز',
       min: (n) => (n === 1 ? 'دقيقة واحدة' : n === 2 ? 'دقيقتان' : n <= 10 ? `${arNum(n)} دقائق` : `${arNum(n)} دقيقة`),
       saved: 'محفوظة',
       listen: 'استمع', pause: 'إيقاف مؤقت', resume: 'تابع الاستماع',
@@ -123,6 +125,7 @@
       heroTitle: 'Cuentos para dormir para niños lejos de casa',
       heroText: 'Cuentos cortos y tiernos sobre extrañar a alguien, idiomas nuevos, cuartos nuevos y calles nuevas. Léanlos juntos o presionen reproducir.',
       pills: ['Gratis', 'Sin registro', 'Funciona sin internet', 'Sin rastreo'],
+      award: 'Ganador',
       min: (n) => `${n} min`,
       saved: 'Guardado',
       listen: 'Escuchar', pause: 'Pausa', resume: 'Seguir escuchando',
@@ -361,7 +364,8 @@
     const hero = el('section', { class: 'hero' },
       el('h1', {}, t('heroTitle')),
       el('p', {}, t('heroText')),
-      el('ul', { class: 'pills' }, t('pills').map((p) => el('li', {}, p))));
+      el('ul', { class: 'pills' }, t('pills').map((p) => el('li', {}, p))),
+      el('p', { class: 'award' }, `🏆 ${t('award')}, `, el('bdi', { dir: 'ltr' }, 'Product Hunt x Google Cloud Run Build for Good 2026')));
     if (!stories.length) return [hero, el('p', { class: 'empty' }, t('empty'))];
     const grid = el('ul', { class: 'grid' });
     const metaById = new Map();
