@@ -1,0 +1,8 @@
+# Builds only the app image (web and studio). Called by infra/redeploy-web.sh.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-f', 'infra/Dockerfile.app', '-t', '${_IMAGE_APP}', '.']
+images:
+  - '${_IMAGE_APP}'
+options:
+  logging: CLOUD_LOGGING_ONLY
