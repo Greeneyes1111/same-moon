@@ -44,6 +44,8 @@ npm run studio          # http://localhost:8081
 PROJECT=your-project REVIEWERS=you@example.com infra/deploy.sh
 ```
 
+To put an app change live without touching anything else, run `bash infra/redeploy-web.sh` from Cloud Shell. It finds the project, rebuilds the app image and updates only the public `web` service.
+
 ## Adding a story or a language
 
 1. Add or edit a file in `stories/`. Every language needs the same number of pages.
