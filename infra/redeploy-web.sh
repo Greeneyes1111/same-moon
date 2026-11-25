@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Rebuilds the app image and puts it live on the public web service only.
-# Keeps the service's settings, secrets and the samemoon.world mapping.
+# Rebuilds the app image and puts it live on the public web service and the
+# review studio (they share one image). Keeps each service's settings, secrets
+# and the samemoon.world mapping.
 # Run from Cloud Shell:  bash infra/redeploy-web.sh
 set -euo pipefail
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
@@ -21,4 +22,5 @@ echo "== Project $PROJECT, building $IMG"
 gcloud builds submit --project "$PROJECT" --config infra/cloudbuild-web.yaml --substitutions "_IMAGE_APP=$IMG" .
 echo "== Putting it live"
 gcloud run services update web --region "$REGION" --project "$PROJECT" --image "$IMG"
-echo "== DONE: web is now on $TAG"
+gcloud run services update studio --region "$REGION" --project "$PROJECT" --image "$IMG"
+echo "== DONE: web and studio are now on $TAG"

@@ -22,7 +22,7 @@ Built on Google Cloud Run for the Cloud Run Hackathon, "Build for Good", 20 Nove
 | `jobs/publish/` | Narrates drafts privately and publishes what was approved |
 | `shared/` | Code the services share: storage, stories, review status, audio, narration |
 | `infra/` | Container images and the one-step deploy script |
-| `tests/` | 38 tests |
+| `tests/` | 51 tests |
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
 
@@ -44,7 +44,7 @@ npm run studio          # http://localhost:8081
 PROJECT=your-project REVIEWERS=you@example.com infra/deploy.sh
 ```
 
-To put an app change live without touching anything else, run `bash infra/redeploy-web.sh` from Cloud Shell. It finds the project, rebuilds the app image and updates only the public `web` service.
+To put an app change live without touching anything else, run `bash infra/redeploy-web.sh` from Cloud Shell. It finds the project, rebuilds the app image and updates only the public `web` service and the `studio` (they share the image).
 
 ## Adding a story or a language
 

@@ -115,6 +115,11 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
 .btn.primary { background: var(--moon); color: var(--night); border-color: var(--moon); font-weight: 700; }
 .btn[disabled] { opacity: .6; cursor: default; }
 .save-all { text-align: center; margin: 6px 0 16px; }
+.helpers { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: 4px 0 16px; font-size: .92rem; color: var(--muted); }
+.helpers a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border-radius: 999px;
+  color: var(--moon); text-decoration: none; border: 1px solid var(--moon-deep); background: rgba(255, 230, 161, .08); font-weight: 600;
+}
 
 .pages { margin: 20px 0; display: grid; gap: 6px; }
 .page {
@@ -159,11 +164,15 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
 
 form.voice { display: grid; gap: 14px; background: var(--night-2); border-radius: var(--radius); padding: 16px; border: 1px solid #36428a; }
 form.voice label { display: grid; gap: 6px; font-weight: 600; }
-form.voice select, form.voice input[type="text"] {
+form.voice select, form.voice input[type="text"], form.voice input[type="email"], form.voice textarea {
   font: inherit; padding: 10px 12px; border-radius: 12px; border: 1px solid #44509c; background: var(--night); color: var(--text); min-height: 44px;
 }
 form.voice .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
-form.voice .check input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--moon); }
+form.voice .check input { width: 22px; height: 22px; flex: 0 0 22px; margin-top: 2px; accent-color: var(--moon); }
+form.voice textarea { resize: vertical; line-height: 1.5; }
+form.voice fieldset.langs { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+form.voice fieldset.langs legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+form.voice .trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .prompter { background: var(--night); border-radius: 12px; padding: 12px 14px; max-height: 260px; overflow: auto; font-size: 1.15rem; line-height: 1.7; }
 .rec-status { color: var(--muted); font-variant-numeric: tabular-nums; }
 .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ff6b81; margin-inline-end: 6px; animation: blink 1s infinite; }

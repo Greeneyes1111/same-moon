@@ -112,3 +112,42 @@ test('a recording that is too short is rejected and deleted', async () => {
     await s.cleanup();
   }
 });
+
+test('a story idea goes to the private bucket only, and spam is quietly dropped', async () => {
+  const s = await setup();
+  try {
+    const post = (body) => fetch(`${s.base}/api/ideas`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    const good = { idea: 'A story about the first\r\nday at a <b>new</b> school.', langs: ['ar', 'xx'], otherLang: 'Tigrinya', place: 'Cairo',
+      role: 'teacher', name: 'Amal', email: 'amal@example.org', adult: true, consent: true, pageLang: 'ar' };
+    assert.equal((await post({ ...good, consent: false })).status, 400);
+    assert.equal((await post({ ...good, idea: 'short' })).status, 400);
+    assert.equal((await post({ ...good, email: 'not an email' })).status, 400);
+    assert.equal((await post({ ...good, website: 'http://spam.example' })).status, 200);
+    assert.deepEqual(await s.store.list('state', 'ideas/'), []);
+    assert.equal((await post(good)).status, 200);
+    const keys = await s.store.list('state', 'ideas/new/');
+    assert.equal(keys.length, 1);
+    const rec = JSON.parse((await s.store.get('state', keys[0])).toString());
+    assert.equal(rec.idea, 'A story about the first\nday at a bnew/b school.');
+    assert.deepEqual(rec.langs, ['ar']);
+    assert.equal(rec.email, 'amal@example.org');
+    assert.equal(rec.role, 'teacher');
+    assert.deepEqual(await s.store.list('public', 'ideas/'), []);
+  } finally {
+    await s.close();
+    await s.cleanup();
+  }
+});
+
+test('story ideas are limited to a few an hour from one address', async () => {
+  const s = await setup();
+  try {
+    const post = () => fetch(`${s.base}/api/ideas`, { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ idea: 'A gentle story about a new street.', adult: true, consent: true }) });
+    for (let i = 0; i < 5; i++) assert.equal((await post()).status, 200);
+    assert.equal((await post()).status, 429);
+  } finally {
+    await s.close();
+    await s.cleanup();
+  }
+});

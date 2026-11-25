@@ -44,10 +44,11 @@
           "When you have Wi-Fi, open a story and tap 'Save for offline'. It will then play with no internet and no data.",
           "To keep Same Moon on your phone like an app, open your browser menu and choose 'Add to Home screen'.",
         ]]],
-        ['Privacy', ['No accounts, no adverts and no tracking. We do not collect anything about you or your child. We only count totals, such as how many times each story is played, so we can see that Same Moon is helping. Saved stories stay on your phone.']],
+        ['Privacy', ['No accounts, no adverts and no tracking. We do not collect anything about you or your child. We only count totals, such as how many times each story is played, so we can see that Same Moon is helping. Saved stories stay on your phone.', 'If you send us a story idea, we keep only what you write in the form, and your email only if you give it, so we can reply. We never share it.']],
         ['Safety', ['Every story, and every voice recording, is checked by a person before it appears here. The stories avoid frightening images.']],
         ['For teachers and organisations', ['Same Moon is free to use in classes, clubs and sessions, and free to share. The stories are not about any one country, so they work for children from anywhere.']],
         ['Lend your voice', ['Children often settle best to a voice that sounds like home. If you are 18 or over, you can record a story in your own language or accent.']],
+        ['Suggest a story', ['Is there something the children you know are going through that a story could help with? Tell us, in any language.']],
       ],
       recordLink: 'Record a story',
       voiceTitle: 'Lend your voice',
@@ -61,6 +62,18 @@
       needBoxes: 'Please tick both boxes.', needRecording: 'Please record or choose a recording first.',
       micFail: 'The microphone could not start. You can choose a recording from your phone instead.',
       sendFail: 'Sending failed. Please try again.',
+      homeFor: 'For grown-ups:', homeVoice: 'Record a story in your own voice', homeIdea: 'Suggest a story',
+      ideaLink: 'Suggest a story', ideaTitle: 'Suggest a story',
+      ideaIntro: "Is there something the children you know are going through that a bedtime story could help with? Tell us. We read every idea, and some will become new stories. This form is for grown-ups. Please do not include a child's name or anything that could identify a child.",
+      iIdea: 'Your idea', iIdeaPh: 'For example: a story about the first day at a new school, before you speak the language.',
+      iLangs: 'Which languages should it be in?', iOther: 'Another language (optional)', iOtherPh: 'For example: Tigrinya',
+      iPlace: 'Where are you, or the children you know? (optional)', iPlacePh: 'For example: Cairo',
+      iRole: 'You are… (optional)', iRoles: [['parent', 'A parent or carer'], ['teacher', 'A teacher'], ['aid', 'An aid or support worker'], ['other', 'Something else']],
+      iName: 'Your first name (optional)', iEmail: 'Your email (optional, only if you would like a reply)',
+      iConsent: 'I agree that Same Moon can use my idea to write a story.',
+      iSend: 'Send idea', iSentTitle: 'Thank you.', iSentText: 'We have your idea. A person reads every one.',
+      iNeedIdea: 'Please write your idea first.', iBadEmail: 'That email address does not look right. You can also leave it empty.',
+      iTooMany: 'Thank you for all your ideas. Please try again later.',
     },
     ar: {
       appName: 'القمر نفسه', skip: 'انتقل إلى المحتوى', language: 'اللغة',
@@ -100,10 +113,11 @@
           'حين يتوفّر الواي فاي، افتحوا الحكاية واضغطوا «احفظها للاستماع دون إنترنت». بعد ذلك ستعمل دون إنترنت ودون استهلاك بيانات.',
           'لإبقاء «القمر نفسه» على هاتفكم مثل التطبيق، افتحوا قائمة المتصفّح واختاروا «إضافة إلى الشاشة الرئيسية».',
         ]]],
-        ['الخصوصية', ['لا حسابات، ولا إعلانات، ولا تتبّع. نحن لا نجمع أي معلومات عنكم أو عن أطفالكم. نكتفي بإحصاء الأعداد الإجمالية، مثل عدد مرات الاستماع إلى كل حكاية، لنعرف إن كانت «القمر نفسه» مفيدة. والحكايات المحفوظة تبقى على هاتفكم.']],
+        ['الخصوصية', ['لا حسابات، ولا إعلانات، ولا تتبّع. نحن لا نجمع أي معلومات عنكم أو عن أطفالكم. نكتفي بإحصاء الأعداد الإجمالية، مثل عدد مرات الاستماع إلى كل حكاية، لنعرف إن كانت «القمر نفسه» مفيدة. والحكايات المحفوظة تبقى على هاتفكم.', 'إذا أرسلتم إلينا فكرة لحكاية، نحتفظ فقط بما تكتبونه في النموذج، وبالبريد الإلكتروني فقط إذا كتبتموه، لنتمكّن من الرد. ولا نشاركه مع أحد أبدًا.']],
         ['الأمان', ['كل حكاية، وكل تسجيل صوتي، يراجعه شخص قبل أن يظهر هنا. والحكايات تتجنّب الصور المخيفة.']],
         ['للمعلّمين والمنظّمات', ['«القمر نفسه» مجانية للاستخدام في الصفوف والأندية والجلسات، ومجانية للمشاركة. الحكايات ليست عن بلد بعينه، فهي تناسب الأطفال من أي مكان.']],
         ['أعِرنا صوتك', ['كثيرًا ما يهدأ الأطفال أكثر مع صوت يشبه صوت البيت. إذا كان عمرك ١٨ عامًا أو أكثر، يمكنك تسجيل حكاية بلغتك أو بلهجتك.']],
+        ['اقترح حكاية', ['هل يمرّ الأطفال الذين تعرفهم بشيء يمكن أن تساعدهم فيه حكاية؟ أخبرنا، بأي لغة.']],
       ],
       recordLink: 'سجّل حكاية',
       voiceTitle: 'أعِرنا صوتك',
@@ -117,6 +131,18 @@
       needBoxes: 'يُرجى وضع علامة في المربّعين.', needRecording: 'يُرجى التسجيل أو اختيار تسجيل أولًا.',
       micFail: 'لم يعمل الميكروفون. يمكنك اختيار تسجيل من هاتفك بدلًا من ذلك.',
       sendFail: 'لم يتم الإرسال. يُرجى المحاولة مرة أخرى.',
+      homeFor: 'للكبار:', homeVoice: 'سجّل حكاية بصوتك', homeIdea: 'اقترح حكاية',
+      ideaLink: 'اقترح حكاية', ideaTitle: 'اقترح حكاية',
+      ideaIntro: 'هل يمرّ الأطفال الذين تعرفهم بشيء يمكن أن تساعدهم فيه حكاية قبل النوم؟ أخبرنا. نقرأ كل فكرة، وقد يصبح بعضها حكايات جديدة. هذا النموذج للكبار. يُرجى عدم كتابة اسم أي طفل أو أي شيء قد يدلّ على طفل بعينه.',
+      iIdea: 'فكرتك', iIdeaPh: 'مثلًا: حكاية عن أول يوم في مدرسة جديدة، قبل تعلّم لغتها.',
+      iLangs: 'بأي لغات تريدها؟', iOther: 'لغة أخرى (اختياري)', iOtherPh: 'مثلًا: التغرينية',
+      iPlace: 'أين تعيش أنت أو الأطفال الذين تعرفهم؟ (اختياري)', iPlacePh: 'مثلًا: القاهرة',
+      iRole: 'أنت… (اختياري)', iRoles: [['parent', 'أحد الوالدين أو مقدّم رعاية'], ['teacher', 'معلّم أو معلّمة'], ['aid', 'عامل إغاثة أو دعم'], ['other', 'غير ذلك']],
+      iName: 'اسمك الأول (اختياري)', iEmail: 'بريدك الإلكتروني (اختياري، فقط إذا أردت أن نردّ عليك)',
+      iConsent: 'أوافق على أن تستخدم «القمر نفسه» فكرتي لكتابة حكاية.',
+      iSend: 'أرسل الفكرة', iSentTitle: 'شكرًا لك.', iSentText: 'وصلتنا فكرتك. يقرأ شخص كل فكرة.',
+      iNeedIdea: 'يُرجى كتابة فكرتك أولًا.', iBadEmail: 'يبدو أن عنوان البريد الإلكتروني غير صحيح. يمكنك أيضًا تركه فارغًا.',
+      iTooMany: 'شكرًا على كل أفكارك. يُرجى المحاولة مرة أخرى لاحقًا.',
     },
     es: {
       appName: 'La misma luna', skip: 'Ir al contenido', language: 'Idioma',
@@ -156,10 +182,11 @@
           'Cuando tengas wifi, abre un cuento y toca «Guardar para usar sin internet». Después se podrá escuchar sin internet y sin gastar datos.',
           'Para tener La misma luna en tu teléfono como una aplicación, abre el menú del navegador y elige «Agregar a la pantalla de inicio».',
         ]]],
-        ['Privacidad', ['Sin cuentas, sin anuncios y sin rastreo. No recopilamos nada sobre ti ni sobre tus hijos. Solo contamos totales, como cuántas veces se escucha cada cuento, para saber si La misma luna está ayudando. Los cuentos guardados se quedan en tu teléfono.']],
+        ['Privacidad', ['Sin cuentas, sin anuncios y sin rastreo. No recopilamos nada sobre ti ni sobre tus hijos. Solo contamos totales, como cuántas veces se escucha cada cuento, para saber si La misma luna está ayudando. Los cuentos guardados se quedan en tu teléfono.', 'Si nos envías una idea para un cuento, solo guardamos lo que escribes en el formulario, y tu correo solo si lo das, para poder responderte. Nunca lo compartimos.']],
         ['Seguridad', ['Cada cuento, y cada grabación de voz, lo revisa una persona antes de aparecer aquí. Los cuentos evitan imágenes que den miedo.']],
         ['Para maestros y organizaciones', ['La misma luna es gratis para usar en clases, clubes y sesiones, y gratis para compartir. Los cuentos no tratan de ningún país en particular, así que sirven para niños de cualquier lugar.']],
         ['Presta tu voz', ['Muchas veces los niños se calman mejor con una voz que suena a casa. Si tienes 18 años o más, puedes grabar un cuento en tu propio idioma o acento.']],
+        ['Sugiere un cuento', ['¿Los niños que conoces están viviendo algo con lo que un cuento podría ayudar? Cuéntanos, en cualquier idioma.']],
       ],
       recordLink: 'Grabar un cuento',
       voiceTitle: 'Presta tu voz',
@@ -173,6 +200,18 @@
       needBoxes: 'Por favor, marca las dos casillas.', needRecording: 'Por favor, graba o elige una grabación primero.',
       micFail: 'El micrófono no funcionó. Puedes elegir una grabación de tu teléfono.',
       sendFail: 'No se pudo enviar. Por favor, inténtalo de nuevo.',
+      homeFor: 'Para adultos:', homeVoice: 'Graba un cuento con tu propia voz', homeIdea: 'Sugiere un cuento',
+      ideaLink: 'Sugiere un cuento', ideaTitle: 'Sugiere un cuento',
+      ideaIntro: '¿Los niños que conoces están viviendo algo con lo que un cuento para dormir podría ayudar? Cuéntanos. Leemos cada idea, y algunas se convertirán en cuentos nuevos. Este formulario es para adultos. Por favor, no escribas el nombre de ningún niño ni nada que permita identificarlo.',
+      iIdea: 'Tu idea', iIdeaPh: 'Por ejemplo: un cuento sobre el primer día en una escuela nueva, cuando todavía no hablas el idioma.',
+      iLangs: '¿En qué idiomas debería estar?', iOther: 'Otro idioma (opcional)', iOtherPh: 'Por ejemplo: quechua',
+      iPlace: '¿Dónde estás tú, o los niños que conoces? (opcional)', iPlacePh: 'Por ejemplo: Bogotá',
+      iRole: 'Eres… (opcional)', iRoles: [['parent', 'Madre, padre o cuidador'], ['teacher', 'Docente'], ['aid', 'Trabajador humanitario o de apoyo'], ['other', 'Otra cosa']],
+      iName: 'Tu nombre (opcional)', iEmail: 'Tu correo electrónico (opcional, solo si quieres una respuesta)',
+      iConsent: 'Acepto que La misma luna use mi idea para escribir un cuento.',
+      iSend: 'Enviar idea', iSentTitle: 'Gracias.', iSentText: 'Recibimos tu idea. Una persona lee cada una.',
+      iNeedIdea: 'Por favor, escribe tu idea primero.', iBadEmail: 'Ese correo no parece correcto. También puedes dejarlo vacío.',
+      iTooMany: 'Gracias por todas tus ideas. Por favor, inténtalo más tarde.',
     },
   };
 
@@ -366,7 +405,11 @@
       el('p', {}, t('heroText')),
       el('ul', { class: 'pills' }, t('pills').map((p) => el('li', {}, p))),
       el('p', { class: 'award' }, `🏆 ${t('award')} `, el('bdi', { dir: 'ltr' }, 'Product Hunt x Google Cloud Run Build for Good 2026')));
-    if (!stories.length) return [hero, el('p', { class: 'empty' }, t('empty'))];
+    const helpers = el('p', { class: 'helpers' },
+      el('span', {}, t('homeFor')),
+      el('a', { href: '#/voice' }, `🎙 ${t('homeVoice')}`),
+      el('a', { href: '#/idea' }, `✎ ${t('homeIdea')}`));
+    if (!stories.length) return [hero, helpers, el('p', { class: 'empty' }, t('empty'))];
     const grid = el('ul', { class: 'grid' });
     const metaById = new Map();
     const markSaved = (id) => {
@@ -387,7 +430,7 @@
       savedState(urls).then((ok) => { if (ok) markSaved(s.id); });
     }
     const saveAll = buildSaveAll(items, markSaved);
-    return saveAll ? [hero, saveAll, grid] : [hero, grid];
+    return saveAll ? [hero, helpers, saveAll, grid] : [hero, helpers, grid];
   }
 
   function renderStory(id) {
@@ -607,7 +650,9 @@
       out.push(el(out.length ? 'h2' : 'h1', {}, heading));
       for (const b of blocks) out.push(Array.isArray(b) ? el('ul', {}, b.map((li) => el('li', {}, li))) : el('p', {}, b));
     }
-    out.push(el('p', {}, el('a', { href: '#/voice', class: 'btn primary' }, t('recordLink'))));
+    out.push(el('p', { class: 'btn-row' },
+      el('a', { href: '#/voice', class: 'btn primary' }, t('recordLink')),
+      el('a', { href: '#/idea', class: 'btn primary' }, t('ideaLink'))));
     return [el('section', { class: 'prose' }, out)];
   }
 
@@ -730,6 +775,71 @@
     return [el('section', { class: 'prose' }, el('h1', {}, t('voiceTitle')), el('p', {}, t('voiceIntro'))), form];
   }
 
+  function renderIdea() {
+    const msg = el('div', { 'aria-live': 'polite' });
+    const idea = el('textarea', { name: 'idea', rows: 6, maxlength: 3000, required: true, placeholder: t('iIdeaPh'), dir: 'auto' });
+    const langBoxes = availableLangs().map((l) => {
+      const box = el('input', { type: 'checkbox', name: 'langs', value: l.code, checked: l.code === state.lang });
+      return { box, label: el('label', { class: 'check' }, box, el('span', {}, l.name)) };
+    });
+    const other = el('input', { type: 'text', name: 'otherLang', maxlength: 60, placeholder: t('iOtherPh'), dir: 'auto' });
+    const place = el('input', { type: 'text', name: 'place', maxlength: 80, placeholder: t('iPlacePh'), dir: 'auto' });
+    const role = el('select', { name: 'role' }, el('option', { value: '' }, '–'), t('iRoles').map(([v, label]) => el('option', { value: v }, label)));
+    const name = el('input', { type: 'text', name: 'name', maxlength: 40, autocomplete: 'given-name', dir: 'auto' });
+    const email = el('input', { type: 'email', name: 'email', maxlength: 200, autocomplete: 'email', dir: 'ltr', inputmode: 'email' });
+    // People never see this field. Automated spam fills it in.
+    const trap = el('input', { type: 'text', name: 'website', tabindex: '-1', autocomplete: 'off' });
+    const adult = el('input', { type: 'checkbox', name: 'adult' });
+    const consent = el('input', { type: 'checkbox', name: 'consent' });
+    const sendBtn = el('button', { class: 'btn primary', type: 'submit' }, t('iSend'));
+    const fail = (key) => msg.replaceChildren(el('p', { class: 'error' }, t(key)));
+
+    const form = el('form', { class: 'voice', novalidate: true },
+      el('label', {}, t('iIdea'), idea),
+      el('fieldset', { class: 'langs' }, el('legend', {}, t('iLangs')), langBoxes.map((b) => b.label)),
+      el('label', {}, t('iOther'), other),
+      el('label', {}, t('iPlace'), place),
+      el('label', {}, t('iRole'), role),
+      el('label', {}, t('iName'), name),
+      el('label', {}, t('iEmail'), email),
+      el('label', { class: 'trap', 'aria-hidden': 'true' }, 'Website', trap),
+      el('label', { class: 'check' }, adult, el('span', {}, t('fAdult'))),
+      el('label', { class: 'check' }, consent, el('span', {}, t('iConsent'))),
+      sendBtn,
+      msg);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (idea.value.trim().length < 10) return fail('iNeedIdea');
+      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) return fail('iBadEmail');
+      if (!adult.checked || !consent.checked) return fail('needBoxes');
+      sendBtn.disabled = true;
+      sendBtn.textContent = t('sending');
+      try {
+        const res = await fetch('/api/ideas', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            idea: idea.value, langs: langBoxes.filter((b) => b.box.checked).map((b) => b.box.value), otherLang: other.value,
+            place: place.value, role: role.value, name: name.value, email: email.value.trim(), website: trap.value,
+            adult: true, consent: true, pageLang: state.lang,
+          }),
+        });
+        if (!res.ok) {
+          const code = (await res.json().catch(() => ({}))).error;
+          throw new Error({ tooMany: 'iTooMany', needIdea: 'iNeedIdea', badEmail: 'iBadEmail', needBoxes: 'needBoxes' }[code] || 'sendFail');
+        }
+        form.replaceWith(el('div', { class: 'notice' }, el('h2', {}, t('iSentTitle')), el('p', {}, t('iSentText'))));
+      } catch (err) {
+        fail(UI.en[err.message] ? err.message : 'sendFail');
+        sendBtn.disabled = false;
+        sendBtn.textContent = t('iSend');
+      }
+    });
+
+    return [el('section', { class: 'prose' }, el('h1', {}, t('ideaTitle')), el('p', {}, t('ideaIntro'))), form];
+  }
+
   /* ---------- Router ---------- */
 
   function route() {
@@ -743,6 +853,7 @@
     else if (hash === '/calm') { nodes = renderCalm(); nav = 'calm'; }
     else if (hash === '/grown-ups') { nodes = renderGrownUps(); nav = 'grown-ups'; }
     else if (hash === '/voice') { nodes = renderVoice(); nav = 'grown-ups'; }
+    else if (hash === '/idea') { nodes = renderIdea(); nav = 'grown-ups'; }
     else nodes = renderLibrary();
     view.replaceChildren(...nodes);
     for (const a of document.querySelectorAll('nav.bottom a')) {

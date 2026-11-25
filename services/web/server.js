@@ -165,6 +165,12 @@ function readBody(req, limit) {
 
 const AUDIO_TYPES = ['audio/webm', 'audio/ogg', 'audio/mp4', 'audio/mpeg', 'audio/wav', 'audio/x-wav', 'audio/x-m4a', 'audio/aac'];
 const clean = (s, max) => String(s || '').replace(/[<>\u0000-\u001f]/g, '').trim().slice(0, max);
+// Like clean(), but keeps line breaks, for the story idea itself.
+const cleanText = (s, max) => String(s || '').replace(/\r\n?/g, '\n').replace(/[<>\u0000-\u0009\u000b-\u001f]/g, '')
+  .replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
+const IDEA_LANGS = ['en', 'ar', 'es'];
+const IDEA_ROLES = ['parent', 'teacher', 'aid', 'other'];
+const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
 export function createServer({ store = makeStore(), stories = loadStories(), counter = new Counter(store) } = {}) {
   const statics = loadStatic();
@@ -172,6 +178,7 @@ export function createServer({ store = makeStore(), stories = loadStories(), cou
   const limiter = new RateLimit();
   // Caps how much one connection can add to the totals.
   const countLimiter = new RateLimit(300, 60 * 60 * 1000);
+  const ideaLimiter = new RateLimit(5, 60 * 60 * 1000);
   const clientIp = (req) => (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
   let catalogueCache = { at: 0, body: null };
 
@@ -269,6 +276,44 @@ export function createServer({ store = makeStore(), stories = loadStories(), cou
       const target = await store.uploadTarget(`incoming/${id}`, mime);
       log('INFO', 'recording slot issued', { story: story.id, lang: body.lang });
       return json(res, 200, { id, upload: target });
+    }
+
+    // A grown-up suggests a story. It goes to the private bucket, where this
+    // service can create files but never read them; reviewers read it in the
+    // studio. Nothing about the sender is kept beyond what they typed.
+    if (req.method === 'POST' && p === '/api/ideas') {
+      if (!ideaLimiter.allow(clientIp(req))) return json(res, 429, { error: 'tooMany' });
+      let body;
+      try {
+        body = JSON.parse((await readBody(req, 16 * 1024)).toString('utf8'));
+      } catch {
+        return json(res, 400, { error: 'bad' });
+      }
+      // A field people never see. Bots fill it in; pretend it worked.
+      if (body?.website) return json(res, 200, { ok: true });
+      if (body.adult !== true || body.consent !== true) return json(res, 400, { error: 'needBoxes' });
+      const idea = cleanText(body.idea, 3000);
+      if (idea.length < 10) return json(res, 400, { error: 'needIdea' });
+      const email = clean(body.email, 200);
+      if (email && !EMAIL.test(email)) return json(res, 400, { error: 'badEmail' });
+      const now = new Date();
+      const id = crypto.randomUUID();
+      const record = {
+        id,
+        idea,
+        langs: (Array.isArray(body.langs) ? body.langs : []).filter((l) => IDEA_LANGS.includes(l)),
+        otherLang: clean(body.otherLang, 60),
+        place: clean(body.place, 80),
+        role: IDEA_ROLES.includes(body.role) ? body.role : '',
+        name: clean(body.name, 40),
+        email,
+        pageLang: IDEA_LANGS.includes(body.pageLang) ? body.pageLang : '',
+        receivedAt: now.toISOString(),
+      };
+      const key = `ideas/new/${now.toISOString().replace(/[:.]/g, '-')}-${id}.json`;
+      await store.put('state', key, Buffer.from(JSON.stringify(record)), { contentType: 'application/json' });
+      log('INFO', 'story idea received');
+      return json(res, 200, { ok: true });
     }
 
     // Local development only: stands in for the signed Cloud Storage URL and

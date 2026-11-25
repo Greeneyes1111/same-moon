@@ -36,12 +36,13 @@ textarea{width:100%;min-height:80px;font:inherit;padding:8px;border-radius:8px;b
 audio{width:100%;margin:8px 0}
 .muted{color:#666;font-size:.9rem}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.idea{white-space:pre-wrap;font-size:1.05rem;margin:8px 0 12px}
 `;
 
 function page(title, body, user, flash) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex"><title>${esc(title)} · Same Moon studio</title><style>${CSS}</style></head><body>
-<header><strong>Same Moon studio</strong><a href="/">Stories</a><a href="/voices">Volunteer voices</a><a href="/stats">Numbers</a><span class="muted" style="color:#b8bde3;margin-inline-start:auto">${esc(user)}</span></header>
+<header><strong>Same Moon studio</strong><a href="/">Stories</a><a href="/voices">Volunteer voices</a><a href="/ideas">Story ideas</a><a href="/stats">Numbers</a><span class="muted" style="color:#b8bde3;margin-inline-start:auto">${esc(user)}</span></header>
 <main>${flash ? `<div class="flash">${esc(flash)}</div>` : ''}${body}</main></body></html>`;
 }
 
@@ -128,8 +129,9 @@ export function createServer({ store = makeStore(), stories = loadStories(), pub
       rows += `<tr><td><strong>${esc(s.en?.title || s.id)}</strong><div class="muted">${esc(s.theme?.en || '')}</div></td>${cells}</tr>`;
     }
     const voices = (await store.list('state', 'voices/review/')).filter((k) => k.endsWith('.json')).length;
+    const ideas = (await store.list('state', 'ideas/new/')).filter((k) => k.endsWith('.json')).length;
     const body = `
-<div class="card row"><div><strong>${waiting}</strong> story versions waiting for review · <strong>${voices}</strong> volunteer recordings waiting</div>
+<div class="card row"><div><strong>${waiting}</strong> story versions waiting for review · <strong>${voices}</strong> volunteer recordings waiting · <a href="/ideas"><strong>${ideas}</strong> new story ideas</a></div>
 <form method="post" action="/publish" style="margin-inline-start:auto"><button>Publish approved stories now</button></form></div>
 <p class="muted">A story appears in the public app only when a reviewer has approved its exact words in that language. Editing the text resets the approval.</p>
 <table><thead><tr><th>Story</th>${langs.map((l) => `<th>${esc(LANGS[l].name)}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
@@ -187,6 +189,46 @@ ${hits.length ? `<p class="warn">Words to check: ${esc(hits.join(', '))}</p>` : 
     }
     const body = `<h1>Volunteer voices</h1>${cards || '<p>No recordings waiting.</p>'}`;
     return page('Volunteer voices', body, user, flash);
+  }
+
+  const ROLES = { parent: 'Parent or carer', teacher: 'Teacher', aid: 'Aid or support worker', other: 'Something else' };
+
+  async function ideasPage(user, flash) {
+    const card = async (k, isNew) => {
+      const buf = await store.get('state', k);
+      if (!buf) return '';
+      let r;
+      try { r = JSON.parse(buf.toString('utf8')); } catch { return ''; }
+      const langs = [...(r.langs || []).map((l) => LANGS[l]?.name || l), r.otherLang].filter(Boolean).join(', ');
+      const who = [r.name, ROLES[r.role], r.place].filter(Boolean).map(esc).join(' · ');
+      const email = r.email ? ` · <a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : ' · no email given';
+      return `<div class="card"><div class="muted">Received ${esc((r.receivedAt || '').slice(0, 16).replace('T', ' '))} UTC${r.pageLang ? ` · sent from the ${esc(LANGS[r.pageLang]?.name || r.pageLang)} page` : ''}</div>
+<p class="idea" dir="auto">${esc(r.idea)}</p>
+<div class="muted">Languages wanted: ${esc(langs || 'not said')}</div>
+<div class="muted">${who || 'No name given'}${email}</div>
+<div class="row" style="margin-top:10px">${isNew ? `<form method="post" action="/ideas/read"><input type="hidden" name="key" value="${esc(k)}"><button class="go">Mark as read</button></form>` : ''}
+<form method="post" action="/ideas/delete"><input type="hidden" name="key" value="${esc(k)}"><button class="no">Delete</button></form></div></div>`;
+    };
+    const newKeys = (await store.list('state', 'ideas/new/')).filter((k) => k.endsWith('.json')).sort().reverse();
+    const readKeys = (await store.list('state', 'ideas/read/')).filter((k) => k.endsWith('.json')).sort().reverse().slice(0, 50);
+    let fresh = '';
+    for (const k of newKeys) fresh += await card(k, true);
+    let old = '';
+    for (const k of readKeys) old += await card(k, false);
+    const body = `<h1>Story ideas</h1>
+<p class="muted">Sent by grown-ups from the "Suggest a story" page. Names and emails are only what people chose to type. Delete anything that names a child or should not be kept.</p>
+<h2>New (${newKeys.length})</h2>${fresh || '<p>No new ideas.</p>'}
+${old ? `<h2>Read</h2>${old}` : ''}`;
+    return page('Story ideas', body, user, flash);
+  }
+
+  async function moveIdea(key, to) {
+    if (!/^ideas\/(new|read)\/[\w-]+\.json$/.test(key)) throw new Error('bad key');
+    if (to === 'read') {
+      if (!key.startsWith('ideas/new/')) return;
+      await store.copy('state', key, 'state', key.replace(/^ideas\/new\//, 'ideas/read/'));
+    }
+    await store.del('state', key);
   }
 
   async function statsPage(user) {
@@ -304,6 +346,7 @@ ${hits.length ? `<p class="warn">Words to check: ${esc(hits.join(', '))}</p>` : 
     if (req.method === 'GET' && p === '/') return html(await dashboard(user, flash));
     if (req.method === 'GET' && p === '/voices') return html(await voicesPage(user, flash));
     if (req.method === 'GET' && p === '/stats') return html(await statsPage(user));
+    if (req.method === 'GET' && p === '/ideas') return html(await ideasPage(user, flash));
 
     let m;
     if (req.method === 'GET' && (m = /^\/story\/([a-z0-9-]+)\/([a-z]{2})$/.exec(p))) {
@@ -338,6 +381,13 @@ ${hits.length ? `<p class="warn">Words to check: ${esc(hits.join(', '))}</p>` : 
       await moveVoice(form.get('key') || '', p.endsWith('approve'));
       log('INFO', p.endsWith('approve') ? 'voice approved' : 'voice rejected', { by: user });
       return redirect('/voices', p.endsWith('approve') ? await startPublish() : 'Recording deleted.');
+    }
+    if (req.method === 'POST' && (p === '/ideas/read' || p === '/ideas/delete')) {
+      const form = await readBody(req);
+      const read = p.endsWith('read');
+      await moveIdea(form.get('key') || '', read ? 'read' : 'delete');
+      log('INFO', read ? 'idea marked read' : 'idea deleted', { by: user });
+      return redirect('/ideas', read ? 'Marked as read.' : 'Idea deleted.');
     }
     if (req.method === 'POST' && p === '/publish') return redirect('/', await startPublish());
 

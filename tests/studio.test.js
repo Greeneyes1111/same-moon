@@ -123,3 +123,27 @@ test('volunteer recordings are listed for review and can be rejected', async () 
     await s.cleanup();
   }
 });
+
+test('story ideas are listed safely and can be marked read or deleted', async () => {
+  const s = await setup();
+  try {
+    const key = 'ideas/new/2026-11-25T03-00-00-000Z-11111111-1111-1111-1111-111111111111.json';
+    await s.store.put('state', key, Buffer.from(JSON.stringify({ idea: 'A story <script>x</script> about grandma', langs: ['ar'], email: 'a@b.org', receivedAt: '2026-11-25T03:00:00Z' })));
+    const home = await (await fetch(`${s.base}/`)).text();
+    assert.match(home, /<strong>1<\/strong> new story ideas/);
+    const html = await (await fetch(`${s.base}/ideas`)).text();
+    assert.match(html, /&lt;script&gt;/);
+    assert.ok(!html.includes('<script>x'));
+    assert.match(html, /mailto:a@b\.org/);
+    assert.equal((await fetch(`${s.base}/ideas/read`, form({ key }))).status, 303);
+    const readKey = key.replace('ideas/new/', 'ideas/read/');
+    assert.deepEqual(await s.store.list('state', 'ideas/new/'), []);
+    assert.deepEqual(await s.store.list('state', 'ideas/read/'), [readKey]);
+    assert.equal((await fetch(`${s.base}/ideas/delete`, form({ key: '../status/x.json' }))).status, 500);
+    assert.equal((await fetch(`${s.base}/ideas/delete`, form({ key: readKey }))).status, 303);
+    assert.deepEqual(await s.store.list('state', 'ideas/'), []);
+  } finally {
+    await s.close();
+    await s.cleanup();
+  }
+});
